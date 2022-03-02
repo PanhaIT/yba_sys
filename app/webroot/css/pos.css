@@ -1,0 +1,328 @@
+@charset "utf-8";
+
+/** Template Style Info **/
+* {
+    font-size:14px;
+    font-family: "Khmer OS";
+}
+body {
+    margin:0;
+    padding:0;
+}
+.km_title{
+    font-family: "Khmer OS Muol";
+    font-size: 22px;
+    color: white;
+    padding: 0;
+    text-align: center;
+}
+
+#searchPro {
+  margin-left: 10px;
+  position: absolute;
+  vertical-align: top;
+  width: 32px; 
+  height: 32px; 
+  background: url('../img/button/search.png') no-repeat center; 
+} 
+#searchPro span { 
+  display: none; 
+} 
+
+#searchSer {
+  margin-left: 50px;
+  vertical-align: top;
+  position: absolute;
+  width: 32px; 
+  height: 32px; 
+  background: url('../img/button/service.png') no-repeat center; 
+} 
+#searchSer span { 
+  display: none; 
+}
+
+#searchMis {
+  margin-left: 90px;
+  vertical-align: top;
+  position: absolute;
+  width: 32px; 
+  height: 32px; 
+  background: url('../img/button/plus.png') no-repeat center; 
+} 
+
+#searchMis span { 
+  display: none; 
+}
+
+#searchPhoto {
+  margin-left: 130px;
+  vertical-align: top;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background: url('../img/button/photo.png') no-repeat center;
+}
+#searchPhoto span {
+  display: none;
+}
+
+.delTr {
+  position: absolute;
+  width: 32px; 
+  height: 32px; 
+  padding: 0px;
+  background: url('../img/button/Actions-edit-delete-icon.png') no-repeat center; 
+}
+
+.delTr span { 
+  display: none; 
+}
+
+.input_label{
+    font-size: 14px;
+    color: #DF6300;
+}
+
+.sale_title{
+    font-size: 22px;
+    color: white;
+}
+
+form input[type=button]:hover{
+    cursor: pointer;
+}
+
+form input[type=text], input[type=text], form input[type=password], input[type=password] {
+    padding: 5px;
+    height: 25px;
+    width: 150px;
+    letter-spacing: 0.05em;
+    border:1px solid #008cbd;
+}
+form input[type=text]:focus, input[type=text]:focus, form input[type=password]:focus, input[type=password]:focus, form textarea:focus, textarea:focus, form select:focus, select:focus {
+    border-color: #DF6300;
+}
+form select, select{
+    padding:5px;
+    height: 38px;
+    letter-spacing: 0.05em;
+    border:1px solid #008cbd;
+}
+.search-choice{
+    top: 5px;
+}
+form textarea, textarea{
+    padding:5px;
+    width: 400px;
+    height: 100px;
+    resize: none;
+    border:1px solid #008cbd;
+}
+.gray{
+    color: #6b6b6b;
+}
+
+th {
+    text-align: left;
+}
+
+.info {
+    width: 100%;
+}
+
+.info th {
+    padding: 10px;
+    color: #00349a;
+    border-bottom: 1px dashed #EEE;
+    width: 0px;
+    white-space: nowrap;
+}
+
+.info td {
+    padding: 10px;
+    border-bottom: 1px dashed #EEE;
+}
+
+.table {
+    clear: both;
+    width: 100%;
+    padding: 5px 0 5px 0;
+    margin: 0;
+    border-spacing: 0;
+}
+
+.table tr:hover{
+    background: #fff1a8;
+}
+
+.table caption {
+    padding: 0 0 5px 0;
+    width: 700px;
+    font: italic;
+    text-align: right;
+}
+
+.table th {
+    color: #fff;
+    border-right: 1px solid #C1DAD7;
+    border-bottom: 1px solid #C1DAD7;
+    border-top: 1px solid #C1DAD7;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 6px 6px 6px 12px;
+    background: #4bacc6;
+    /* fix length */
+    width: 500px;
+    white-space: nowrap;
+}
+
+.table th.sorting_asc {
+    background: url('../js/DataTables-1.8.1/media/images/sort_asc1.png') no-repeat top right !important;
+}
+
+.table th.sorting_desc {
+    background: url('../js/DataTables-1.8.1/media/images/sort_desc1.png') no-repeat top right !important;
+}
+
+.table th.sorting {
+    background: #4bacc6;
+}
+
+.table th.sorting_asc_disabled {
+    background: url('../js/DataTables-1.8.1/media/images/sort_asc_disabled.png') no-repeat top right !important;
+}
+
+.table th.sorting_desc_disabled {
+    background: url('../js/DataTables-1.8.1/media/images/sort_desc_disabled.png') no-repeat top right !important;
+}
+
+.table th.first {
+    border-left: 1px solid #C1DAD7;
+    /* fix length */
+    width: 30px;
+}
+
+.table th.nobg {
+    border-top: 0;
+    border-left: 0;
+    border-right: 1px solid #C1DAD7;
+    background: none;
+}
+
+.table td {
+    border-right: 1px solid #C1DAD7;
+    border-bottom: 1px solid #C1DAD7;
+    padding: 6px 6px 6px 12px;
+    color: #000;
+}
+
+.table td.first {
+    border-left: 1px solid #C1DAD7;
+}
+
+
+.table td.alt {
+    color: #797268;
+}
+
+.table th.spec {
+    border-left: 1px solid #C1DAD7;
+    border-top: 0;
+    background: #fff url(../img/table/bullet1.gif) no-repeat;
+}
+
+.table th.specalt {
+    border-left: 1px solid #C1DAD7;
+    border-top: 0;
+    background: #f5fafa url(../img/table/bullet2.gif) no-repeat;
+    color: #797268;
+}
+
+.table_solid, .table_solid th, .table_solid td {
+    border-color: #000;
+    border-style: solid;
+}
+
+.table_solid {
+    border-width: 0 1px 1px 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.table_solid th {
+    margin: 0;
+    padding: 10px;
+    border-width: 1px 0 0 1px;
+    background: #00afc1;
+    color: #FFF;
+}
+
+.table_solid td {
+    margin: 0;
+    padding: 10px;
+    border-width: 1px 0 0 1px;
+}
+
+.table_form{
+    width: 98%;
+    margin: 0 auto;
+}
+.print_doc{
+    width: 890px;
+    margin: 0 auto;
+    background: #FFF;
+    font-size: 120%;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.print_doc #btnDisappearPrint{
+    height: 70px;
+    width: 200px;
+    font-size: 200%;
+}
+
+#progress{
+    text-align: center;
+    width: 200px;
+    padding: 5px;
+    display: none;
+    background: #fff1a8;
+    color: black;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    font-weight: 600;
+    border-top: 2px solid #f3d53a;
+    border-right: 2px solid #f3d53a;
+}
+
+#connectStatus{
+    text-align: center;
+    width: 300px;
+    padding: 5px;
+    display: none;
+    color: black;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    font-weight: 600;
+    border-top: 2px solid #f3d53a;
+    border-right: 2px solid #f3d53a;
+}
+
+.red{
+    color: red;
+}
+
+.delTr{
+    cursor: pointer;
+}
+
+a img {
+    border:none;
+}

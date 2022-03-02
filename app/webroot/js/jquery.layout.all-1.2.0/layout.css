@@ -1,0 +1,43 @@
+.ui-layout-pane { /* all 'panes' */
+    background: #FFF;
+    padding: 10px;
+    overflow: auto;
+}
+
+.ui-layout-pane-north {
+    overflow: hidden;
+}
+
+.ui-layout-pane-north, .ui-layout-pane-south {
+    background: #f2f2f2;
+}
+
+.ui-layout-resizer { /* all 'resizer-bars' */
+    background: #f2f2f2;
+}
+
+.ui-layout-resizer-north {
+    border-bottom: 1px solid #BBB;
+}
+
+.ui-layout-resizer-south {
+    border-top: 1px solid #BBB;
+}
+
+.ui-layout-toggler { /* all 'toggler-buttons' */
+    background: #AAA;
+}
+
+.ui-layout-toggler-north-open, .ui-layout-toggler-south-closed{
+    background: url(img/toggle-up.gif) no-repeat bottom;
+}
+.ui-layout-toggler-north-closed, .ui-layout-toggler-south-open{
+    background: url(img/toggle-down.gif) no-repeat top;
+}
+
+.ui-layout-toggler-east-open, .ui-layout-toggler-west-closed{
+    background: url(img/toggle-right.gif) no-repeat center center;
+}
+.ui-layout-toggler-east-closed, .ui-layout-toggler-west-open{
+    background: url(img/toggle-left.gif) no-repeat center center;
+}

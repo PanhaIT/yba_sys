@@ -1,0 +1,244 @@
+*** Edit
+Pencil square
+Pen
+Pencil
+
+***Delete
+Trash 
+Trash fill
+
+
+*** View
+Eye
+Eye slash 
+View list 
+View stacked 
+
+
+
+*** Printer
+Printer fill 
+Printer 
+
+*** Plus
+Plus 
+Plus square fill
+Plus circle fill 
+Plus square 
+Plus circle 
+
+**Key
+Key
+
+***Info
+Info circle 
+
+
+***image
+Images 
+Image
+Image fill 
+
+
+***setting
+Gear 
+
+
+**download
+Download 
+
+
+***Dash Circle
+Dash circle 
+
+Dash square 
+
+
+*** check
+Check square
+
+*** back
+Backspace
+
+**Backspace reverse
+Backspace reverse
+Caret left square
+
+Caret left 
+Caret left fill
+Caret left square fill
+Caret left square
+Chevron compact left 
+Chevron bar left 
+Chevron left 
+
+
+***Dash
+Dash
+
+****Diagram
+Diagram 2 
+Diagram 3
+
+
+***File
+Files
+File text 
+
+
+
+***Arrow
+Arrow left circle 
+Box arrow in left 
+Box arrow left 
+
+
+***list
+List ol 
+List check 
+List stars 
+List task
+List ul
+List
+
+
+***Lock
+Lock 
+Unlock 
+
+***People
+People 
+Person check 
+Person dash 
+Person plus 
+Person 
+Person lines fill
+
+
+***Power Off
+Power 
+
+
+***Question
+Question circle 
+Question square
+Question 
+
+***Receipt
+Receipt
+
+
+***Search 
+Search 
+
+
+***Share
+Share
+
+***Sticky Note
+Stickies
+Sticky
+Sticky fill 
+
+
+****Tag
+ Tags fill
+Tags
+
+***Phone
+Telephone plus
+Telephone 
+
+***Dot
+Three dots vertical 
+Three dots
+
+***Toggle
+Toggle off 
+Toggle on 
+
+
+***Truck
+Truck 
+
+***check
+Ui checks
+Ui radios 
+
+
+***Scan
+Upc scan
+
+
+****Barcode
+Upc
+
+
+***Upload
+Upload
+
+
+***Close
+X circle fill
+X circle 
+X square 
+X square fill
+X square
+X
+
+**Grid 
+Grid 1x2 
+Grid 
+** Home
+House door fill 
+House door
+
+**People
+People fill 
+People
+Person circle 
+Person plus fill 
+Person plus 
+Person square 
+
+**Text
+Text right 
+Text left 
+
+
+***TodoList
+circle-square
+circle-fill
+clock
+clipboard
+journal-text
+receipt
+window
+
+***Meeting Dashboard
+
+
+*** Service
+
+*** Organization Chat
+diagram-2
+diagram-3
+diagram-2-fill
+diagram-3-fill
+
+
+**approve
+#file-earmark-check
+share
+card-checklist
+
+check-square-fill
+dash-square-fill
+forward
+pencil-square
+pen
+arrow-left-square-fill
+check-square-fill
+check2-circle
+check2-square
+list-ul

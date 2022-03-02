@@ -1,0 +1,17 @@
+INSERT INTO `module_types` (`id`, `sys_code`, `name`, `ordering`, `group_by`, `status`) VALUES (NULL, '9b5762f0bf43cae9d63edffa1d4fvgbj', 'Employee', '135', 'Todo List', '1');
+
+INSERT INTO `modules` (`sys_code`, `module_type_id`, `name`, `ordering`, `status`) VALUES
+('11d7d8a741b244ba75e2dec8e08aecfr', (SELECT id FROM `module_types` WHERE name = 'Employee' LIMIT 1), 'Employee (Add)', 1, 1),
+('11d7d8a741b244ba75e2dec8e08aeqax', (SELECT id FROM `module_types` WHERE name = 'Employee' LIMIT 1), 'Employee (Edit)', 1, 1),
+('11d7d8a741b244ba75e2dec8e084r4ax', (SELECT id FROM `module_types` WHERE name = 'Employee' LIMIT 1), 'Employee (View)', 1, 1),
+('11d7d8a741b244ba75e2dec8e033eeee', (SELECT id FROM `module_types` WHERE name = 'Employee' LIMIT 1), 'Employee (Delete)', 1, 1);
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08amklo', (SELECT id FROM `modules` WHERE name = 'Employee (Add)' LIMIT 1), 'employees', 'addEmployee'),
+('1ad7d8a741b244bwe7e13cc8e08amjhy', (SELECT id FROM `modules` WHERE name = 'Employee (Edit)' LIMIT 1), 'employees', 'editEmployee'),
+('1ad7d8a741b244bwe7e13cc8e08agbv0', (SELECT id FROM `modules` WHERE name = 'Employee (View)' LIMIT 1), 'employees', 'viewEmployee'),
+('1ad7d8a741b244bwe7e13cc8e08agbv0', (SELECT id FROM `modules` WHERE name = 'Employee (View)' LIMIT 1), 'employees', 'indexEmployee'),
+('1ad7d8a741b244bwe7e13cc8e08agbv0', (SELECT id FROM `modules` WHERE name = 'Employee (View)' LIMIT 1), 'employees', 'ajaxEmployee'),
+('1ad7d8a741b244bwe7e13cc8e08aqswe', (SELECT id FROM `modules` WHERE name = 'Employee (Delete)' LIMIT 1), 'employees', 'deleteEmployee'),
+('1ad7d8a741b244bwe7e13cc8e08agbv0', (SELECT id FROM `modules` WHERE name = 'Employee (Add)' LIMIT 1), 'employees', 'uploadEmployee'),
+('1ad7d8a741b244bwe7e13cc8e08aqswe', (SELECT id FROM `modules` WHERE name = 'Employee (Add)' LIMIT 1), 'employees', 'removePhotoTmpEmployee');

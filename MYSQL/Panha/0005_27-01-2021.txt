@@ -1,0 +1,10 @@
+DELETE FROM `transaction_details` WHERE `transaction_details`.`id` = 388877;
+DELETE FROM `transactions` WHERE `id` = 195875;
+UPDATE `purchase_requests` SET `pr_code` = 'RBK-PO2101-0000046' WHERE `purchase_requests`.`id` = 10714;
+UPDATE `purchase_requests` SET `pr_code` = 'RBK-PO2101-0000047' WHERE `purchase_requests`.`id` = 10720;
+UPDATE `purchase_requests` SET `pr_code` = 'RBK-PO2101-0000048' WHERE `purchase_requests`.`id` = 10721;
+UPDATE `purchase_requests` SET `pr_code` = 'RBK-PO2101-0000049' WHERE `purchase_requests`.`id` = 10739;
+UPDATE `purchase_requests` SET `pr_code` = 'RBK-PO2101-0000050' WHERE `purchase_requests`.`id` = 10743;
+
+
+

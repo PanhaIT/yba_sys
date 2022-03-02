@@ -1,0 +1,143 @@
+--
+-- Triggers `1_group_totals`
+--
+DROP TRIGGER IF EXISTS `z1GroupTotalAfInsert`;
+DELIMITER //
+CREATE TRIGGER `z1GroupTotalAfInsert` AFTER INSERT ON `1_group_totals`
+ FOR EACH ROW BEGIN
+	IF NEW.transaction_detail_id IS NOT NULL OR NEW.transaction_detail_id != '' THEN
+		UPDATE `transaction_details` SET `g_inventory`=(`g_inventory` + 1) WHERE  `id`= NEW.transaction_detail_id;
+	END IF;
+END
+
+
+//
+DELIMITER ;
+DROP TRIGGER IF EXISTS `z1GroupTotalAfUpdate`;
+DELIMITER //
+CREATE TRIGGER `z1GroupTotalAfUpdate` AFTER UPDATE ON `1_group_totals`
+ FOR EACH ROW BEGIN
+	IF NEW.transaction_detail_id IS NOT NULL OR NEW.transaction_detail_id != '' THEN
+		UPDATE `transaction_details` SET `g_inventory`=(`g_inventory` + 1) WHERE  `id`= NEW.transaction_detail_id;
+	END IF;
+END
+//
+DELIMITER ;
+
+
+--
+-- Triggers `1_group_total_details`
+--
+DROP TRIGGER IF EXISTS `z1GroupDetailAfInsert`;
+DELIMITER //
+CREATE TRIGGER `z1GroupDetailAfInsert` AFTER INSERT ON `1_group_total_details`
+ FOR EACH ROW BEGIN
+	IF NEW.transaction_detail_id IS NOT NULL OR NEW.transaction_detail_id != '' THEN
+		UPDATE `transaction_details` SET `g_inventory_detail` =  (`g_inventory_detail` + 1) WHERE  `id`= NEW.transaction_detail_id;
+	END IF;
+END
+//
+DELIMITER ;
+DROP TRIGGER IF EXISTS `z1GroupDetailAfUpdate`;
+DELIMITER //
+CREATE TRIGGER `z1GroupDetailAfUpdate` AFTER UPDATE ON `1_group_total_details`
+ FOR EACH ROW BEGIN
+	IF NEW.transaction_detail_id IS NOT NULL OR NEW.transaction_detail_id != '' THEN
+		UPDATE `transaction_details` SET `g_inventory_detail` =  (`g_inventory_detail` + 1) WHERE  `id`= NEW.transaction_detail_id;
+	END IF;
+END
+//
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `1_inventories`
+--
+
+
+--
+-- Triggers `1_inventories`
+--
+DROP TRIGGER IF EXISTS `z1InventoryAfInsert`;
+DELIMITER //
+CREATE TRIGGER `z1InventoryAfInsert` AFTER INSERT ON `1_inventories`
+ FOR EACH ROW BEGIN
+	IF NEW.transaction_detail_id IS NOT NULL OR NEW.transaction_detail_id != '' THEN
+		UPDATE `transaction_details` SET `loc_inventory`=(`loc_inventory` + 1) WHERE  `id`=NEW.transaction_detail_id;
+	END IF;
+END
+//
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `1_inventory_totals`
+--
+
+
+
+
+--
+-- Triggers `1_inventory_totals`
+--
+DROP TRIGGER IF EXISTS `z1InventoryTotalAfInsert`;
+DELIMITER //
+CREATE TRIGGER `z1InventoryTotalAfInsert` AFTER INSERT ON `1_inventory_totals`
+ FOR EACH ROW BEGIN
+	IF NEW.transaction_detail_id IS NOT NULL OR NEW.transaction_detail_id != '' THEN
+		UPDATE `transaction_details` SET `loc_inventory_total`=(`loc_inventory_total` + 1) WHERE  `id`=NEW.transaction_detail_id;
+	END IF;
+END
+//
+DELIMITER ;
+DROP TRIGGER IF EXISTS `z1InventoryTotalAfUpdate`;
+DELIMITER //
+CREATE TRIGGER `z1InventoryTotalAfUpdate` AFTER UPDATE ON `1_inventory_totals`
+ FOR EACH ROW BEGIN
+	IF NEW.transaction_detail_id IS NOT NULL OR NEW.transaction_detail_id != '' THEN
+		UPDATE `transaction_details` SET `loc_inventory_total`=(`loc_inventory_total` + 1) WHERE  `id`=NEW.transaction_detail_id;
+	END IF;
+END
+//
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `1_inventory_total_details`
+--
+
+
+--
+-- Triggers `1_inventory_total_details`
+--
+DROP TRIGGER IF EXISTS `z1InventoryDetailAfInsert`;
+DELIMITER //
+CREATE TRIGGER `z1InventoryDetailAfInsert` AFTER INSERT ON `1_inventory_total_details`
+ FOR EACH ROW BEGIN
+	IF NEW.transaction_detail_id IS NOT NULL OR NEW.transaction_detail_id != '' THEN
+		UPDATE `transaction_details` SET `loc_inventory_detail`=(`loc_inventory_detail` + 1) WHERE  `id`=NEW.transaction_detail_id;
+	END IF;
+END
+//
+DELIMITER ;
+DROP TRIGGER IF EXISTS `z1InventoryDetailAfUpdate`;
+DELIMITER //
+CREATE TRIGGER `z1InventoryDetailAfUpdate` AFTER UPDATE ON `1_inventory_total_details`
+ FOR EACH ROW BEGIN
+	IF NEW.transaction_detail_id IS NOT NULL OR NEW.transaction_detail_id != '' THEN
+		UPDATE `transaction_details` SET `loc_inventory_detail`=(`loc_inventory_detail` + 1) WHERE  `id`=NEW.transaction_detail_id;
+	END IF;
+END
+//
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accounts`
+--
+
+

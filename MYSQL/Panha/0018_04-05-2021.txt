@@ -1,0 +1,36 @@
+CREATE TABLE IF NOT EXISTS `pos_promotional_discounts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sys_code` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `branch_id` int(11) DEFAULT NULL,
+  `promotion_type_id` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `created_by` bigint(20) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `modified_by` bigint(20) DEFAULT NULL,
+  `is_pos_default` tinyint(4) DEFAULT '1' COMMENT '0:none apply,1:apply',
+  `is_active` tinyint(4) DEFAULT NULL COMMENT '0:inactive,1:active',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+INSERT INTO `module_types` (`id`, `sys_code`, `name`, `ordering`, `group_by`, `status`) VALUES (NULL, '9b5762f0bf43cae9d63edffa1d47basr', 'Pos Promot Discount', '135', 'System Setting', '1');
+
+INSERT INTO `modules` (`sys_code`, `module_type_id`, `name`, `ordering`, `status`) VALUES
+('11d7d8a741b244ba75e2dec8e08ae122', (SELECT id FROM `module_types` WHERE name = 'Pos Promot Discount' LIMIT 1), 'Pos Promot Discount (View)', 1, 1),
+('11d7d8a741b244ba75e2dec8e08aeqsw', (SELECT id FROM `module_types` WHERE name = 'Pos Promot Discount' LIMIT 1), 'Pos Promot Discount (Add)', 1, 1),
+('11d7d8a741b244ba75e2dec8e08aewsw', (SELECT id FROM `module_types` WHERE name = 'Pos Promot Discount' LIMIT 1), 'Pos Promot Discount (Edit)', 1, 1),
+('11d7d8a741b244ba75e2dec8e08aeqax', (SELECT id FROM `module_types` WHERE name = 'Pos Promot Discount' LIMIT 1), 'Pos Promot Discount (Delete)', 1, 1);
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08ahsxg', (SELECT id FROM `modules` WHERE name = 'Pos Promot Discount (View)' LIMIT 1), 'pos_promotional_discounts', 'index'),
+('1ad7d8a741b244bwe7e13cc8e08ahkln', (SELECT id FROM `modules` WHERE name = 'Pos Promot Discount (View)' LIMIT 1), 'pos_promotional_discounts', 'ajax'),
+('1ad7d8a741b244bwe7e13cc8e08ahcvn', (SELECT id FROM `modules` WHERE name = 'Pos Promot Discount (View)' LIMIT 1), 'pos_promotional_discounts', 'view'),
+('1ad7d8a741b244bwe7e13cc8e08ahmlk', (SELECT id FROM `modules` WHERE name = 'Pos Promot Discount (Add)' LIMIT 1), 'pos_promotional_discounts', 'add'),
+('1ad7d8a741b244bwe7e13cc8e08ahnmj', (SELECT id FROM `modules` WHERE name = 'Pos Promot Discount (Edit)' LIMIT 1), 'pos_promotional_discounts', 'edit'),
+('1ad7d8a741b244bwe7e13cc8e08ahtyo', (SELECT id FROM `modules` WHERE name = 'Pos Promot Discount (Delete)' LIMIT 1), 'pos_promotional_discounts', 'delete');
+
+INSERT INTO `s_module_settings` (`id`, `s_module_type_setting_id`, `name`, `ordering`, `created`, `is_active`) VALUES (NULL, '6', 'Branch Promotional', '5', '2021-07-18 14:44:14', '1');
+
+INSERT INTO `s_module_detail_settings` (`id`, `s_module_setting_id`, `name`, `date_value`, `value`, `module_description`, `module_controller`, `module_view`, `template`, `ordering`, `is_has_module`, `is_use_date`, `is_use_chart_account`, `is_use_integer`, `is_use_currency`, `is_use_checked`, `is_import`, `is_checked`, `is_active`) 
+VALUES (NULL, '30', 'Branch Promotional', NULL, NULL, 'Branch Promotional', 'pos_promotional_discounts', 'index', NULL, '1', '1', '0', '0', '0', '0', '0', '0', '1', '1');
+
+

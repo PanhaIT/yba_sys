@@ -1,0 +1,501 @@
+RENAME TABLE `cycle_products` TO `inventory_adjustments`;
+RENAME TABLE `cycle_product_details` TO `inventory_adjustment_details`;
+ALTER TABLE `inventory_adjustment_details` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `inventory_adjustment_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+ALTER TABLE `inventory_adjustment_details` CHANGE `cycle_product_id` `inv_adj_id` BIGINT(20) NULL DEFAULT NULL;
+ALTER TABLE `inventory_adjustment_details` ADD `vendor_id` INT(11) NULL AFTER `inv_adj_id`;
+
+ALTER TABLE `inventory_physical_details` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `inventory_physical_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+ALTER TABLE `inventory_physical_details` ADD `vendor_id` INT(11) NULL AFTER `inventory_physical_id`;
+
+ALTER TABLE `inventories` CHANGE `cycle_product_id` `inv_adj_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `inventories` CHANGE `cycle_product_detail_id` `inv_adj_detail_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `inventories` CHANGE `credit_memo_id` `sales_return_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `inventories` CHANGE `sales_order_id` `sales_invoice_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `inventories` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `inventories` ADD `size_id` INT(11) NULL AFTER `color_id`;
+ALTER TABLE `inventories` CHANGE `purchase_order_id` `purchase_bill_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `inventories` DROP `transaction_detail_id`;
+
+ALTER TABLE `inventory_totals` CHANGE `total_cycle` `total_inv_adj` DECIMAL(15,3) NULL DEFAULT '0.000';
+ALTER TABLE `inventory_totals` CHANGE `total_so` `total_si` DECIMAL(15,3) NULL DEFAULT '0.000';
+ALTER TABLE `inventory_totals` CHANGE `total_so_free` `total_si_free` DECIMAL(15,3) NULL DEFAULT '0.000';
+ALTER TABLE `inventory_totals` CHANGE `total_pbc` `total_pbr` DECIMAL(15,3) NULL DEFAULT '0.000';
+ALTER TABLE `inventory_totals` CHANGE `total_cm` `total_sr` DECIMAL(15,3) NULL DEFAULT '0.000';
+ALTER TABLE `inventory_totals` CHANGE `total_cm_free` `total_sr_free` DECIMAL(15,3) NULL DEFAULT '0.000';
+ALTER TABLE `inventory_totals` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `inventory_totals` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `inventory_total_by_dates` CHANGE `product_id` `vendor_id` DOUBLE NOT NULL DEFAULT '0';
+ALTER TABLE `inventory_total_by_dates` ADD `product_id` INT(11) NULL AFTER `vendor_id`;
+ALTER TABLE `inventory_total_by_dates` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `inventory_total_by_dates` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `inventory_unit_costs` ADD `vendor_id` INT(11) NULL AFTER `id`;
+ALTER TABLE `inventory_unit_costs` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `inventory_unit_costs` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `inventory_valuations` CHANGE `cycle_product_id` `inv_adj_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `inventory_valuations` CHANGE `sales_order_id` `sales_invoice_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `inventory_valuations` CHANGE `credit_memo_id` `sales_return_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `inventory_valuations` CHANGE `purchase_order_id` `purchase_bill_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `inventory_valuations` CHANGE `purchase_order_detail_id` `purchase_bill_detail_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `inventory_valuations` DROP `transaction_detail_id`;
+
+ALTER TABLE `inventory_valuation_cals` ADD `vendor_id` INT(11) NULL AFTER `date`;
+ALTER TABLE `inventory_valuation_cals` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `inventory_valuation_cals` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `inventory_totals` ADD `vendor_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `inventory_totals` DROP `transaction_detail_id`;
+
+ALTER TABLE `inventory_total_by_dates` CHANGE `vendor_id` `vendor_id1` INT(11) NOT NULL DEFAULT '0';
+ALTER TABLE `inventory_total_by_dates` ADD `vendor_id` INT(11) NULL AFTER `vendor_id1`;
+ALTER TABLE `inventory_total_by_dates` DROP `vendor_id1`;
+
+ALTER TABLE `inventory_total_by_dates` CHANGE `product_id` `product_id` INT(11) NULL DEFAULT '0';
+ALTER TABLE `inventory_total_by_dates` CHANGE `total_cycle` `total_inv_adj` DECIMAL(15,3) NULL DEFAULT '0.000';
+ALTER TABLE `inventory_total_by_dates` CHANGE `total_pbc` `total_pbr` DECIMAL(15,3) NULL DEFAULT '0.000';
+ALTER TABLE `inventory_total_by_dates` CHANGE `total_cm` `total_sr` DECIMAL(15,3) NULL DEFAULT '0.000';
+
+ALTER TABLE `1_inventories` CHANGE `credit_memo_id` `sales_return_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `1_inventories` CHANGE `cycle_product_id` `inventory_adjustment_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `1_inventories` CHANGE `cycle_product_detail_id` `inventory_adjustment_detail_id` INT(11) NULL DEFAULT NULL;
+
+ALTER TABLE `1_inventory_total_details` CHANGE `total_so` `total_sales_invoice` DECIMAL(15,3) NULL DEFAULT '0.000';
+ALTER TABLE `1_inventory_total_details` CHANGE `total_cycle` `total_inv_adj` DECIMAL(15,3) NULL DEFAULT '0.000';
+ALTER TABLE `1_inventory_total_details` CHANGE `total_sales_invoice` `total_si` DECIMAL(15,3) NULL DEFAULT '0.000';
+ALTER TABLE `1_inventory_total_details` CHANGE `total_pbc` `total_pbr` DECIMAL(15,3) NULL DEFAULT '0.000';
+ALTER TABLE `1_inventory_total_details` CHANGE `total_cm` `total_sr` DECIMAL(15,3) NULL DEFAULT '0.000';
+ALTER TABLE `1_inventory_total_details` DROP `transaction_detail_id`;
+
+ALTER TABLE `1_inventories` CHANGE `sales_order_id` `sales_invoice_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `1_inventories` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `1_inventories` ADD `size_id` INT(11) NULL AFTER `color_id`;
+ALTER TABLE `1_inventories` DROP `transaction_detail_id`;
+ALTER TABLE `1_inventories` CHANGE `purchase_order_id` `purchase_bill_id` INT(11) NULL DEFAULT NULL;
+
+ALTER TABLE `1_inventory_totals` DROP `product_id`;
+ALTER TABLE `1_inventory_totals` ADD COLUMN `product_id` INT(11) NULL DEFAULT '0.000' FIRST;
+ALTER TABLE `1_inventory_totals` ADD `vendor_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `1_inventory_totals` ADD `color_id` INT(11) NULL AFTER `vendor_id`;
+ALTER TABLE `1_inventory_totals` ADD `size_id` INT(11) NULL AFTER `color_id`;
+ALTER TABLE `1_inventory_totals` DROP `transaction_detail_id`;
+
+ALTER TABLE `1_inventory_total_details` ADD `vendor_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `1_inventory_total_details` ADD `color_id` INT(11) NULL AFTER `vendor_id`;
+ALTER TABLE `1_inventory_total_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `1_group_totals` DROP `transaction_detail_id`;
+ALTER TABLE `1_group_totals` ADD COLUMN `vendor_id` INT(11) NULL DEFAULT '0' FIRST;
+ALTER TABLE `1_group_totals` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `1_group_totals` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `1_group_total_details` DROP `transaction_detail_id`;
+ALTER TABLE `1_group_total_details` ADD `vendor_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `1_group_total_details` ADD `color_id` INT(11) NULL AFTER `vendor_id`;
+ALTER TABLE `1_group_total_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+ALTER TABLE `1_group_total_details` CHANGE `total_cycle` `total_inv_adj` DECIMAL(15,3) NULL DEFAULT '0.000';
+ALTER TABLE `1_group_total_details` CHANGE `total_so` `total_si` DECIMAL(15,3) NULL DEFAULT '0.000';
+ALTER TABLE `1_group_total_details` CHANGE `total_so_free` `total_si_free` DECIMAL(15,3) NULL DEFAULT '0.000';
+ALTER TABLE `1_group_total_details` CHANGE `total_pbc` `total_pbr` DECIMAL(15,3) NULL DEFAULT '0.000';
+ALTER TABLE `1_group_total_details` CHANGE `total_cm` `total_sr` DECIMAL(15,3) NULL DEFAULT '0.000';
+ALTER TABLE `1_group_total_details` CHANGE `total_cm_free` `total_sr_free` DECIMAL(15,3) NULL DEFAULT '0.000';
+
+DROP TABLE `e_product_price_histories`;
+DROP TABLE `e_product_shares`;
+DROP TABLE `e_store_shares`;
+DROP TABLE `e_product_prices`;
+DROP TABLE `e_pgroup_shares`;
+DROP TABLE `e_product_categories`;
+DROP TABLE `e_product_detail_shares`;
+
+CREATE TABLE IF NOT EXISTS `catalog_orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sys_code` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `company_id` int(11) DEFAULT NULL,
+  `branch_id` int(11) DEFAULT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `address_id` int(11) DEFAULT NULL,
+  `customer_contact_id` int(11) DEFAULT NULL COMMENT 'Order from customer',
+  `sales_rep_id` int(11) DEFAULT NULL COMMENT 'Order from sales man',
+  `code` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `currency_center_id` int(11) DEFAULT NULL,
+  `price_type_id` int(11) DEFAULT NULL,
+  `zone_id` int(11) DEFAULT NULL,
+  `coupon_amount` decimal(15,3) DEFAULT '0.000',
+  `payment_method_id` int(11) DEFAULT NULL COMMENT '1: Pipay; 2: ABA ; 3: True Money; 4: Wing',
+  `payment_method_status` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `payment_option` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `note` text COLLATE utf8_unicode_ci,
+  `total_vat` decimal(15,3) DEFAULT '0.000',
+  `vat_percent` decimal(5,3) DEFAULT '0.000',
+  `vat_setting_id` int(11) DEFAULT NULL,
+  `vat_calculate` tinyint(4) DEFAULT NULL COMMENT '1: Before Discount, Mark Up; 2: After Discount, Mark Up',
+  `discount` decimal(15,3) DEFAULT '0.000',
+  `discount_percent` decimal(6,3) DEFAULT '0.000',
+  `total_amount` decimal(15,3) DEFAULT '0.000',
+  `total_deposit` decimal(15,3) DEFAULT '0.000',
+  `device_token` text COLLATE utf8_unicode_ci,
+  `created` datetime DEFAULT NULL,
+  `created_by` bigint(20) DEFAULT NULL,
+  `edited` datetime DEFAULT NULL,
+  `edited_by` bigint(20) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `modified_by` bigint(20) DEFAULT NULL,
+  `is_convert` tinyint(4) DEFAULT NULL COMMENT '0: Not Yet; 1: Quotation; 2; Sales Order; 3: Sales Invoice',
+  `convert_po` tinyint(4) DEFAULT '0' COMMENT '0: not yet convert; 1: converted',
+  `convert_delivery` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0: not yet convert; 1: converted',
+  `status` tinyint(4) DEFAULT '1' COMMENT '-2 is void by Admin; -1 is edit by client; 0 is void ordered by client; 1 is ordering; 2 confirm ordering',
+  PRIMARY KEY (`id`),
+  KEY `key_search` (`code`,`date`,`created_by`,`edited_by`,`modified_by`,`status`),
+  KEY `key_filter` (`company_id`,`customer_id`,`customer_contact_id`,`currency_center_id`,`price_type_id`,`vat_setting_id`,`branch_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `catalog_order_details` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `sys_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `catalog_order_id` bigint(20) DEFAULT NULL,
+  `vendor_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `color_id` int(11) DEFAULT NULL,
+  `size_id` int(11) DEFAULT NULL,
+  `qty` int(11) DEFAULT '0',
+  `qty_uom_id` int(11) DEFAULT NULL,
+  `conversion` int(11) DEFAULT NULL,
+  `discount_id` int(11) DEFAULT NULL,
+  `discount_amount` decimal(15,3) DEFAULT '0.000',
+  `discount_percent` decimal(5,3) DEFAULT NULL,
+  `unit_cost` decimal(15,3) DEFAULT '0.000',
+  `unit_price` decimal(15,3) DEFAULT '0.000',
+  `total_price` decimal(15,3) DEFAULT '0.000',
+  `status` tinyint(4) DEFAULT '1' COMMENT '1: Issue; 2: Success; 3: On Delivery; 4: Logistic; 5: Received',
+  PRIMARY KEY (`id`),
+  KEY `quotaion_id` (`catalog_order_id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `catalog_order_disputes` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `catalog_order_id` bigint(20) DEFAULT NULL,
+  `type_id` tinyint(4) DEFAULT NULL COMMENT '1: Wrong Item; 2: Didn''t get product',
+  `description` text,
+  `created` datetime DEFAULT NULL,
+  `created_by` bigint(20) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1 open, 2 closed',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `catalog_order_emails` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `host` varchar(50) DEFAULT NULL,
+  `port` varchar(20) DEFAULT NULL,
+  `username` varchar(150) DEFAULT NULL,
+  `password` varchar(150) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `created_by` bigint(20) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `modified_by` bigint(20) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `catalog_order_email_subjects` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type_id` tinyint(4) DEFAULT NULL COMMENT '1: Registered; 2: Forgot Password; 3: Catalog Order Success',
+  `subject` varchar(150) DEFAULT NULL,
+  `body` text,
+  `created` datetime DEFAULT NULL,
+  `created_by` bigint(20) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `modified_by` bigint(20) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `catalog_order_services` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `catalog_order_id` bigint(20) DEFAULT NULL,
+  `service_id` int(11) DEFAULT NULL,
+  `qty` int(11) DEFAULT '0',
+  `qty_uom_id` int(11) DEFAULT NULL,
+  `conversion` int(11) DEFAULT NULL,
+  `discount_id` int(11) DEFAULT NULL,
+  `discount_amount` decimal(15,3) DEFAULT '0.000',
+  `discount_percent` decimal(5,3) DEFAULT NULL,
+  `unit_cost` decimal(15,3) DEFAULT '0.000',
+  `unit_price` decimal(15,3) DEFAULT '0.000',
+  `total_price` decimal(15,3) DEFAULT '0.000',
+  PRIMARY KEY (`id`),
+  KEY `quotaion_id` (`catalog_order_id`),
+  KEY `service_id` (`service_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `catalog_order_tracks` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `catalog_order_id` bigint(20) DEFAULT NULL,
+  `status` bigint(20) DEFAULT NULL COMMENT '1: Issue; 2: Success; 3: On Delivery; 4: Logistic; 5: Received',
+  `created` datetime DEFAULT NULL,
+  `created_by` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `e_brands` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sys_code` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `name` (`name`),
+  KEY `sys_code` (`sys_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `e_brand_shares` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `e_brand_id` int(11) DEFAULT NULL,
+  `brand_id` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_id` (`brand_id`),
+  KEY `company_id` (`e_brand_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `e_pgroup_shares` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) DEFAULT NULL,
+  `e_product_category_id` int(11) DEFAULT NULL,
+  `pgroup_id` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `pgroup_id` (`pgroup_id`),
+  KEY `company_id` (`company_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `e_product_catalog_address` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type_id` tinyint(4) NOT NULL DEFAULT '2' COMMENT '1: Invoice Address; 2: Shippment Address',
+  `contact_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mobile` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `province` varchar(255) COLLATE utf8_unicode_ci DEFAULT '26',
+  `description` text COLLATE utf8_unicode_ci,
+  `lats` text COLLATE utf8_unicode_ci,
+  `longs` text COLLATE utf8_unicode_ci,
+  `district` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `commune_id` int(11) DEFAULT NULL,
+  `village` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `street_no` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `home_no` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `is_default` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `filters` (`created_by`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `e_product_catalog_carts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
+  `qty` decimal(15,3) DEFAULT '0.000',
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  `deleted` datetime DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique` (`product_id`,`created_by`,`is_active`),
+  KEY `filters` (`product_id`,`created_by`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `e_product_catalog_promotions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type_id` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1: Limited, 2: Unlimited',
+  `name` varchar(255) DEFAULT NULL,
+  `description` text,
+  `photo` varchar(50) DEFAULT NULL,
+  `start_date` varchar(50) DEFAULT NULL,
+  `end_date` varchar(50) DEFAULT NULL,
+  `percent` varchar(50) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `e_product_catalog_slides` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `photo` varchar(255) DEFAULT NULL,
+  `description` text,
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `e_product_catalog_suggestions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type_id` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1: Report a bug',
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `email` text COLLATE utf8_unicode_ci,
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `filters` (`type_id`,`created_by`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `e_product_categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sys_code` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `img` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `sys_code` (`sys_code`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `e_product_category_relatings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `e_product_category_id` int(11) DEFAULT NULL,
+  `e_relating_id` int(11) DEFAULT NULL COMMENT 'relation from e_product_category id',
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `pgroup_id` (`e_relating_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `e_product_detail_shares` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `view` int(11) DEFAULT NULL,
+  `order` int(11) DEFAULT NULL,
+  `rate` int(11) DEFAULT NULL,
+  `rate_level` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_id` (`product_id`),
+  KEY `company_id` (`company_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `e_product_favorites` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `deleted` datetime DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `filters` (`product_id`,`created_by`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `e_product_prices` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
+  `uom_id` int(11) DEFAULT NULL,
+  `before_price` decimal(15,3) DEFAULT NULL,
+  `sell_price` decimal(15,3) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `uom_id` (`uom_id`),
+  KEY `products` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `e_product_price_histories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
+  `uom_id` int(11) DEFAULT NULL,
+  `before_price` decimal(15,3) DEFAULT NULL,
+  `sell_price` decimal(15,3) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `uom_id` (`uom_id`),
+  KEY `products` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `e_product_shares` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) DEFAULT NULL,
+  `e_product_category_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `total_view` int(11) DEFAULT NULL,
+  `total_order` int(11) DEFAULT NULL,
+  `total_rate` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT '1' COMMENT '1: Baby App approved 2: Unshare from Baby App and Shop 3: Shop approved 4: Baby App Rejected',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `key` (`product_id`),
+  KEY `product_id` (`product_id`),
+  KEY `company_id` (`company_id`),
+  KEY `is_active` (`is_active`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `e_store_shares` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) DEFAULT NULL,
+  `sys_code` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `telephone` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address` text COLLATE utf8_unicode_ci,
+  `e_mail` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `website` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `long` int(11) DEFAULT NULL,
+  `lat` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  `is_share` tinyint(4) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `company_id` (`company_id`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `activity_logs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `vendor_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `device_token` varchar(250) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL COMMENT '1:Add Wishlist, 2:Delete Wishlist, 3:Add Favorite, 4:Delete Favorite',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+
+
+
+
+
+
+
+
+

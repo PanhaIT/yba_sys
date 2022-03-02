@@ -1,0 +1,2 @@
+ALTER TABLE `promotional_points`
+  DROP `pgroup_id`;

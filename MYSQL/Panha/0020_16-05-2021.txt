@@ -1,0 +1,5 @@
+TRUNCATE TABLE `pos_promotional_discounts`;
+TRUNCATE TABLE `promotype_branches`;
+TRUNCATE TABLE `promotionals`;
+TRUNCATE TABLE `promotional_details`;
+ALTER TABLE `pos_promotional_discounts` DROP `promotion_type_id`;

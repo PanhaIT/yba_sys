@@ -1,0 +1,1 @@
+ALTER TABLE `sales_orders` ADD `promotional_type` TINYINT(4) NULL COMMENT '1:save point,2:apply point' AFTER `card_code`;

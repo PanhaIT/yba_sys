@@ -1,0 +1,11 @@
+Options +FollowSymlinks
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteRule    ^$    webroot/    [L]
+    RewriteRule    (.*) webroot/$1    [L]
+ </IfModule>
+<IfModule mod_php5.c>
+    php_value upload_max_filesize 1024M
+    php_value post_max_size 1025M
+    php_value max_input_vars 1000000
+</IfModule>

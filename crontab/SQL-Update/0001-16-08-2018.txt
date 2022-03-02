@@ -1,0 +1,25 @@
+INSERT INTO `modules` (`sys_code`, `module_type_id`, `name`, `ordering`, `description`) VALUES ('204021bd42e3dae2f15f0fa824a651f7', 28, 'Report (Open Bill)', 307, NULL);
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('d4415d9a902ea1c79a10b160cf7f9194', 497, 'reports', 'openBill');
+INSERT INTO `sas_master`.`module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('d4415d9a902ea1c79a10b160cf7f9194', 497, 'reports', 'openBillResult');
+
+
+ALTER TABLE `purchase_return_receipts`
+	ADD COLUMN `pay_date` DATE NULL DEFAULT NULL AFTER `change`;
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('06caee0a978113fe704d082d65e6484d', 632, 'settings', 'saveCheckBox');
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('06caee0a978113fe704d082d65e6484d', 632, 'settings', 'saveBaseCurrencySetting');
+
+INSERT INTO `s_module_detail_settings` (`s_module_setting_id`, `name`, `template`, `ordering`, `is_use_checked`, `is_import`) VALUES (23, 'Chart of Account', 'coa.csv', 3, 0, 1);
+
+UPDATE `s_module_detail_settings` SET `is_active`=2 WHERE  `id`=3;
+
+UPDATE `s_module_detail_settings` SET `module_description`='UoM', `module_controller`='uoms', `module_view`='index', `is_has_module`=1 WHERE  `id`=5;
+
+ALTER TABLE `products`
+	CHANGE COLUMN `company_id` `company_id` INT(11) NULL DEFAULT '1' AFTER `parent_id`;
+ALTER TABLE `products`
+	CHANGE COLUMN `price_uom_id` `price_uom_id` INT(11) NULL DEFAULT '2' AFTER `unit_cost`;
+ALTER TABLE `customers`
+	CHANGE COLUMN `payment_term_id` `payment_term_id` INT(11) NULL DEFAULT '1' AFTER `address_other`;
+
+INSERT INTO `s_module_detail_settings` (`s_module_setting_id`, `name`, `module_description`, `module_controller`, `module_view`, `ordering`, `is_has_module`, `is_use_checked`) VALUES (1, '', 'Category List', 'pgroups', 'index', 8, 1, 0);

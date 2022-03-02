@@ -1,0 +1,3 @@
+UPDATE `s_module_detail_settings` SET `module_description`='Sales Rep List', `module_controller`='employees', `module_view`='index', `is_has_module`=1 WHERE  `id`=46;
+INSERT INTO `modules` (`sys_code`, `module_type_id`, `name`, `ordering`, `description`) VALUES ('8d44fa8ec64abe76e789a344897c48cb', 117, 'Sales By Item (Sales Rep)', 2, NULL);
+UPDATE `modules` SET `module_type_id`=117, status = 1 WHERE  `id`=240;

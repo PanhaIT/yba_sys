@@ -1,0 +1,17 @@
+ALTER TABLE `product_prices`
+	CHANGE COLUMN `branch_id` `branch_id` INT(11) NULL DEFAULT '0' AFTER `sys_code`;
+
+ALTER TABLE `product_price_histories`
+	CHANGE COLUMN `branch_id` `branch_id` INT(11) NULL DEFAULT NULL AFTER `id`;
+
+DROP TRIGGER `zProductPriceBfInsert`;
+
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='';
+DELIMITER //
+CREATE TRIGGER `zProductPriceBfInsert` BEFORE INSERT ON `product_prices` FOR EACH ROW BEGIN
+	IF NEW.sys_code = "" OR NEW.sys_code IS NULL OR NEW.product_id IS NULL OR NEW.price_type_id IS NULL OR NEW.uom_id IS NULL OR NEW.set_type IS NULL THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid Data';
+	END IF;
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;

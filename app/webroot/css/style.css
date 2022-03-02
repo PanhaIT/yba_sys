@@ -1,0 +1,436 @@
+/** Template Style Info **/
+
+
+/*@font-face {
+    font-family: khmerFont;
+    src: url(../fonts/kmSBBICsf.ttf);
+}*/
+
+* {
+    /* font-family: Kh-Battambang,Arial,Helvetica,sans-serif; */
+    font-size: 12px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.printable {
+    display: none;
+}
+
+h1.title {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 16px;
+    text-transform: uppercase;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom: 1px solid rgba(54, 64, 74, 0.05);
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    background: #ebeff2;
+    height: 30px;
+    color: #189db2;
+}
+
+.menu {
+    height: 20px;
+}
+
+.menu .menu_item {
+    padding: 0 15px 0 15px;
+    cursor: pointer;
+}
+
+.menu .current,
+.menu .selected {
+    border: 1px solid #999;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    behavior: url(../img/border-radius.htc);
+}
+
+.leftPanel {
+    float: left;
+    width: 100%;
+}
+
+.rightPanel {
+    float: right;
+    width: 100%;
+    display: none;
+}
+
+
+/** Clear DIV **/
+
+.clear {
+    clear: both;
+    padding-top: 10px;
+}
+
+
+/** General Style Info **/
+
+a:link,
+a:active,
+a:visited {
+    color: #00afc1;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #e67824;
+    text-decoration: underline;
+}
+
+a.white:link,
+a.white:active,
+a.white:visited {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+a.white:hover {
+    border-bottom: 1px dotted #FFFFFF;
+}
+
+a img {
+    border: none;
+}
+
+a.lang:link,
+a.lang:active,
+a.lang:visited {
+    color: #00afc1;
+    font-weight: normal;
+    padding: 3px;
+    border: 1px solid #00afc1;
+    text-decoration: none;
+}
+
+a.lang:hover {
+    color: #e67824;
+    font-weight: normal;
+    padding: 3px;
+    text-decoration: none;
+}
+
+.addnew {
+    padding: 0px;
+    width: 400px;
+    letter-spacing: 0.05em;
+    background-image: -moz-linear-gradient(center bottom, white 85%, #EEEEEE 99%);
+    border: 1px solid #AAAAAA;
+    border-radius: 4px 4px 4px 4px;
+}
+
+.addnewSmall {
+    padding: 0px;
+    width: 320px;
+    letter-spacing: 0.05em;
+    background-image: -moz-linear-gradient(center bottom, white 85%, #EEEEEE 99%);
+    border: 1px solid #AAAAAA;
+    border-radius: 4px 4px 4px 4px;
+}
+
+
+/** Form Style Info **/
+
+form input[type=text],
+form input[type=password] {
+    padding: 5px;
+    width: 400px;
+    letter-spacing: 0.05em;
+    background-image: -moz-linear-gradient(center bottom, white 85%, #EEEEEE 99%);
+    border: 1px solid #AAAAAA;
+    border-radius: 4px 4px 4px 4px;
+}
+
+form input[type=text]:focus,
+form input[type=password]:focus,
+form textarea:focus,
+form select:focus {
+    border: 1px solid #3875D7;
+}
+
+form select {
+    padding: 5px;
+    height: 28px;
+    width: 200px;
+    letter-spacing: 0.05em;
+    background-image: -moz-linear-gradient(center bottom, white 85%, #EEEEEE 99%);
+    border: 1px solid #AAAAAA;
+    border-radius: 4px 4px 4px 4px;
+}
+
+form textarea {
+    padding: 5px;
+    width: 400px;
+    height: 100px;
+    resize: none;
+    border: 1px solid;
+    border: 1px solid #AAAAAA;
+    background-image: -moz-linear-gradient(center bottom, white 85%, #EEEEEE 99%);
+    border-radius: 4px 4px 4px 4px;
+}
+
+.search-choice {
+    top: 5px;
+}
+
+form table.table input[type=text],
+form table.table input[type=password] {
+    padding: 0px;
+    width: 100%;
+    letter-spacing: 0.05em;
+    background-image: none;
+    border: 0px;
+}
+
+form table.table input[type=text]:focus,
+form table.table input[type=password]:focus,
+form table.table textarea:focus,
+form table.table select:focus {
+    border: 0px;
+}
+
+form table.table select {
+    padding: 0px;
+    height: 28px;
+    width: 100%;
+    letter-spacing: 0.05em;
+    background-image: none;
+    border: 0px;
+}
+
+form table.table tr:hover {
+    background-color: #F0F0F0;
+}
+
+div.checkbox {
+    float: left;
+}
+
+.red {
+    color: #F00;
+}
+
+.blue {
+    color: #0000FF;
+}
+
+
+/** Legend **/
+
+div.legend div.legend_title {
+    background: #00afc1;
+    color: #FFF;
+    padding: 5px;
+}
+
+div.legend div.legend_sub_title {
+    background: #EEE;
+    color: #000;
+    font-weight: bold;
+    font-style: italic;
+    border-left: 1px solid #00afc1;
+    border-right: 1px solid #00afc1;
+    border-bottom: 1px solid #00afc1;
+    padding: 5px;
+}
+
+div.legend div.legend_content {
+    border-left: 1px solid #00afc1;
+    border-right: 1px solid #00afc1;
+    border-bottom: 1px solid #00afc1;
+    padding: 5px;
+}
+
+
+/* Module */
+
+.moduleType {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px;
+    border-bottom: 1px dotted #999;
+}
+
+.module {
+    padding: 5px 5px 5px 20px;
+    border-bottom: 1px dotted #999;
+}
+
+.hidden {
+    display: none;
+}
+
+#diliveryCount {
+    background: red;
+    color: white;
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.wrap-print-slip {
+    width: 300px;
+    margin: 0 auto;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.inputDisable {
+    color: #D4D0C8;
+}
+
+.inputEnable {
+    color: #000;
+}
+
+.settingMenu {
+    padding: 0px;
+    display: none;
+}
+
+.settingMenu .divMenu {
+    display: block;
+    background: #FFF;
+    width: 240px;
+    position: absolute;
+    z-index: 200;
+    border: 1px solid #D4D0C8;
+}
+
+.settingMenu .divMenu h1 {
+    display: block;
+    font-size: 13px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #D4D0C8;
+}
+
+.settingMenu .divMenu table {
+    width: 100%;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.settingMenu .divMenu table td {
+    font-size: 12px;
+    color: #000;
+    font-weight: normal;
+}
+
+.settingMenu .divMenu table button {
+    height: 30px;
+    width: 70px;
+    cursor: pointer;
+}
+
+.settingMenu .divMenu table button:hover {
+    height: 30px;
+    width: 70px;
+}
+
+.boxDashboard {
+    width: 49%;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-right: 8px;
+    background-clip: padding-box;
+    background-color: #ffffff;
+    border: 1px solid rgba(54, 64, 74, 0.05);
+    border-radius: 5px;
+    padding: 0px;
+    position: relative;
+}
+
+.select-style {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa url("img/icon-select.png") no-repeat 90% 50%;
+    height: 25px;
+    margin-right: 3px;
+}
+
+.select-style select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.select-style select:focus {
+    outline: none;
+}
+
+
+/* Style the tab */
+
+.tabLeft {
+    float: left;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 17%;
+    min-height: 440px;
+}
+
+
+/* Style the buttons that are used to open the tab content */
+
+.tabLeft button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 15px 10px;
+    width: 100%;
+    border-bottom: 1px solid #999;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+/* Change background color of buttons on hover */
+
+.tabLeft button:hover {
+    background-color: #ddd;
+}
+
+
+/* Create an active/current "tab button" class */
+
+.tabLeft button.active {
+    background-color: #ccc;
+}
+
+
+/* Style the tab content */
+
+.tabcontent {
+    float: right;
+    padding: 0px 12px;
+    border: 1px solid #ccc;
+    width: 80%;
+    min-height: 440px;
+}

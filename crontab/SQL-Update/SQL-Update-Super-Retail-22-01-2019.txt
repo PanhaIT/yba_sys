@@ -1,0 +1,97 @@
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='';
+DELIMITER //
+CREATE TRIGGER `z4GroupDetailAfInsert` AFTER INSERT ON `4_group_total_details` FOR EACH ROW BEGIN
+	IF NEW.transaction_detail_id IS NOT NULL OR NEW.transaction_detail_id != '' THEN
+		UPDATE `transaction_details` SET `g_inventory_detail` =  (`g_inventory_detail` + 1) WHERE  `id`= NEW.transaction_detail_id;
+	END IF;
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='';
+DELIMITER //
+CREATE TRIGGER `z4GroupDetailAfUpdate` AFTER UPDATE ON `4_group_total_details` FOR EACH ROW BEGIN
+	IF NEW.transaction_detail_id IS NOT NULL OR NEW.transaction_detail_id != '' THEN
+		UPDATE `transaction_details` SET `g_inventory_detail` =  (`g_inventory_detail` + 1) WHERE  `id`= NEW.transaction_detail_id;
+	END IF;
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='';
+DELIMITER //
+CREATE TRIGGER `z4GroupTotalAfInsert` AFTER INSERT ON `4_group_totals` FOR EACH ROW BEGIN
+	IF NEW.transaction_detail_id IS NOT NULL OR NEW.transaction_detail_id != '' THEN
+		UPDATE `transaction_details` SET `g_inventory`=(`g_inventory` + 1) WHERE  `id`= NEW.transaction_detail_id;
+	END IF;
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='';
+DELIMITER //
+CREATE TRIGGER `z4GroupTotalAfUpdate` AFTER UPDATE ON `4_group_totals` FOR EACH ROW BEGIN
+	IF NEW.transaction_detail_id IS NOT NULL OR NEW.transaction_detail_id != '' THEN
+		UPDATE `transaction_details` SET `g_inventory`=(`g_inventory` + 1) WHERE  `id`= NEW.transaction_detail_id;
+	END IF;
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='';
+DELIMITER //
+CREATE TRIGGER `z4InventoryAfInsert` AFTER INSERT ON `4_inventories` FOR EACH ROW BEGIN
+	IF NEW.transaction_detail_id IS NOT NULL OR NEW.transaction_detail_id != '' THEN
+		UPDATE `transaction_details` SET `loc_inventory`=(`loc_inventory` + 1) WHERE  `id`=NEW.transaction_detail_id;
+	END IF;
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='';
+DELIMITER //
+CREATE TRIGGER `z4InventoryDetailAfInsert` AFTER INSERT ON `4_inventory_total_details` FOR EACH ROW BEGIN
+	IF NEW.transaction_detail_id IS NOT NULL OR NEW.transaction_detail_id != '' THEN
+		UPDATE `transaction_details` SET `loc_inventory_detail`=(`loc_inventory_detail` + 1) WHERE  `id`=NEW.transaction_detail_id;
+	END IF;
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='';
+DELIMITER //
+CREATE TRIGGER `z4InventoryDetailAfUpdate` AFTER UPDATE ON `4_inventory_total_details` FOR EACH ROW BEGIN
+	IF NEW.transaction_detail_id IS NOT NULL OR NEW.transaction_detail_id != '' THEN
+		UPDATE `transaction_details` SET `loc_inventory_detail`=(`loc_inventory_detail` + 1) WHERE  `id`=NEW.transaction_detail_id;
+	END IF;
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='';
+DELIMITER //
+CREATE TRIGGER `z4InventoryTotalAfInsert` AFTER INSERT ON `4_inventory_totals` FOR EACH ROW BEGIN
+	IF NEW.transaction_detail_id IS NOT NULL OR NEW.transaction_detail_id != '' THEN
+		UPDATE `transaction_details` SET `loc_inventory_total`=(`loc_inventory_total` + 1) WHERE  `id`=NEW.transaction_detail_id;
+	END IF;
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='';
+DELIMITER //
+CREATE TRIGGER `z4InventoryTotalAfUpdate` AFTER UPDATE ON `4_inventory_totals` FOR EACH ROW BEGIN
+	IF NEW.transaction_detail_id IS NOT NULL OR NEW.transaction_detail_id != '' THEN
+		UPDATE `transaction_details` SET `loc_inventory_total`=(`loc_inventory_total` + 1) WHERE  `id`=NEW.transaction_detail_id;
+	END IF;
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;

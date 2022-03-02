@@ -1,0 +1,29 @@
+CREATE TABLE IF NOT EXISTS `promotype_branches` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pos_promotional_discount_id` int(11) DEFAULT NULL,
+  `promotion_type_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08ah1sd', (SELECT id FROM `modules` WHERE name = 'Point Of Sales (Add)' LIMIT 1), 'point_of_sales', 'checkPromoType');
+
+
+CREATE TABLE IF NOT EXISTS `promotion_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `created_by` bigint(20) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `modified_by` bigint(20) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT NULL COMMENT '0:inactive,1:active',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+INSERT INTO `promotion_types` (`id`, `name`, `created`, `created_by`, `modified`, `modified_by`, `is_active`) VALUES
+(1, 'Buy and free with the same/difference product', '2021-05-08 00:00:00', 1, NULL, NULL, 1),
+(2, 'Buy >= 100$ get anyone product free', '2021-05-10 00:00:00', 1, NULL, NULL, 1),
+(3, 'Buy >= 100$ get discount ...%', '2021-05-10 00:00:00', 1, NULL, NULL, 1),
+(4, 'Limit price for 3 items in group difference items', '2021-05-10 00:00:00', 1, NULL, NULL, 1);
+
+

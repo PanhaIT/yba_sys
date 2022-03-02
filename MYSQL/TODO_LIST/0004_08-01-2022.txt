@@ -1,0 +1,16 @@
+INSERT INTO `module_types` (`id`, `sys_code`, `name`, `ordering`, `group_by`, `status`) VALUES (NULL, '9b5762f0bf43cae9d63edffa1d4fvgbj', 'Employee Group', '136', 'Todo List', '1');
+
+INSERT INTO `modules` (`sys_code`, `module_type_id`, `name`, `ordering`, `status`) VALUES
+('11d7d8a741b244ba75e2dec8e08aecfr', (SELECT id FROM `module_types` WHERE name = 'Employee Group' LIMIT 1), 'Employee Group (Add)', 1, 1),
+('11d7d8a741b244ba75e2dec8e08aeqax', (SELECT id FROM `module_types` WHERE name = 'Employee Group' LIMIT 1), 'Employee Group (Edit)', 1, 1),
+('11d7d8a741b244ba75e2dec8e084r4ax', (SELECT id FROM `module_types` WHERE name = 'Employee Group' LIMIT 1), 'Employee Group (View)', 1, 1),
+('11d7d8a741b244ba75e2dec8e033eeee', (SELECT id FROM `module_types` WHERE name = 'Employee Group' LIMIT 1), 'Employee Group (Delete)', 1, 1);
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08amklo', (SELECT id FROM `modules` WHERE name = 'Employee Group (Add)' LIMIT 1), 'egroups', 'addEgroup'),
+('1ad7d8a741b244bwe7e13cc8e08amjhy', (SELECT id FROM `modules` WHERE name = 'Employee Group (Edit)' LIMIT 1), 'egroups', 'editEgroup'),
+('1ad7d8a741b244bwe7e13cc8e08agbv0', (SELECT id FROM `modules` WHERE name = 'Employee Group (View)' LIMIT 1), 'egroups', 'viewEgroup'),
+('1ad7d8a741b244bwe7e13cc8e08agbv0', (SELECT id FROM `modules` WHERE name = 'Employee Group (View)' LIMIT 1), 'egroups', 'indexEgroup'),
+('1ad7d8a741b244bwe7e13cc8e08agbv0', (SELECT id FROM `modules` WHERE name = 'Employee Group (View)' LIMIT 1), 'egroups', 'ajaxEgroup'),
+('1ad7d8a741b244bwe7e13cc8e08aqswe', (SELECT id FROM `modules` WHERE name = 'Employee Group (Delete)' LIMIT 1), 'egroups', 'deleteEgroup');
+

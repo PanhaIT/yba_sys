@@ -1,0 +1,112 @@
+CREATE TABLE IF NOT EXISTS `sizes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sys_code` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `duplicate` (`name`),
+  KEY `name` (`name`),
+  KEY `is_active` (`is_active`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+
+CREATE TABLE IF NOT EXISTS `product_colors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
+  `color_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `product_images` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
+  `filename` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sort_order` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `product_sizes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
+  `size_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `product_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
+  `ptype_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `ptypes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sys_code` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `name` (`name`),
+  KEY `sys_code` (`sys_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08ah1xc', (SELECT id FROM `modules` WHERE name = 'Product/Service (View)' LIMIT 1), 'products', 'variantsProduct');
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08ah1xc', (SELECT id FROM `modules` WHERE name = 'Product/Service (View)' LIMIT 1), 'products', 'removePhotoTmp');
+
+ALTER TABLE `product_variant_tmps` ADD `note` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL AFTER `size_id`;
+ALTER TABLE `product_variant_tmps` ADD `photo` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL AFTER `id`;
+
+CREATE TABLE IF NOT EXISTS `product_variants` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `photo` text COLLATE utf8_unicode_ci,
+  `product_id` int(11) DEFAULT NULL,
+  `vendor_id` int(11) DEFAULT NULL,
+  `color_id` int(11) DEFAULT NULL,
+  `size_id` int(11) DEFAULT NULL,
+  `note` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+ALTER TABLE `products`  DROP `color_id`;
+ALTER TABLE `product_variant_tmps` ADD `user_id` INT(11) NULL AFTER `note`;
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08ah1xc', (SELECT id FROM `modules` WHERE name = 'Product/Service (View)' LIMIT 1), 'products', 'updateVariantNote');
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08ah1xc', (SELECT id FROM `modules` WHERE name = 'Product/Service (View)' LIMIT 1), 'products', 'removePhoto');
+ALTER TABLE `product_variants` ADD `user_id` INT(11) NULL AFTER `note`;
+
+
+
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08ah1xc', (SELECT id FROM `modules` WHERE name = 'Product/Service (View)' LIMIT 1), 'products', 'removeMultiPhoto');
+
+ALTER TABLE `product_variant_tmps` ADD `product_variant_id` INT(11) NULL AFTER `photo`;
+
+
+
+
+
+
+
+
+
+
+
+

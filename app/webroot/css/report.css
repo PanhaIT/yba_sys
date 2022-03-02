@@ -1,0 +1,27 @@
+/* Style Report */
+/*
+Powered By UDAYA TECHNOLOGY
+*/
+
+span.btnShowHide{
+    width: 100px; 
+    text-align: right; 
+    float: right; 
+    cursor: pointer;
+}
+
+div.legend_content .inputContainer{
+    width: 100%;
+}
+
+div.legend_content input{
+    width: 90%;
+}
+
+div.legend_content select{
+    width: 95%;
+}
+
+div.legend_content .buttons button{
+    width: 130px;
+}

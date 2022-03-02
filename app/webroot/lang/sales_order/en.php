@@ -1,0 +1,40 @@
+<?php
+
+define('SALES_ORDER_CODE', 'Sales/Invoice Code');
+define('SALES_ORDER_DATE', 'Sales/Invoice Date');
+define('SALES_ORDER_INFORMATION', 'Sales/Invoice Information');
+define('SALES_ORDER_CUSTOMER_NAME', 'Customer Name');
+define('SALES_ORDER_UNIT_PRICE', 'Unit Price');
+define('SALES_ORDER_TOTAL_PRICE', 'Total Price');
+define('SALES_ORDER_ADD_MISCELLANEOUS', 'Add Miscellaneous');
+define('SALES_ORDER_NEW_PRICE', 'New Price');
+define('SALES_ORDER_SELECT_PRICE', 'Select Price');
+define('SALES_ORDER_ADD_NEW_MISCELLANEOUS', 'Add New Miscellaneous');
+define('SALES_ORDER_SELECT_DISCOUNT', 'Select Discount');
+define('SALES_ORDER_SALES_ORDER_INVOICE', 'Sales Invoice');
+define('SALES_ORDER_INVOICE', 'Invoice');
+define('SALES_ORDER_MISCELLANEOUS', 'Miscellaneous');
+define('SALES_ORDER_SALES_ORDER', 'Sales/Invoice');
+define('SALES_ORDER_SALLER', 'Seller');
+define('SALES_ORDER_PRINT_DATE', 'Print Date');
+define('SALES_ORDER_RECEIVER', 'Receiver');
+define('SALES_ORDER_INVOICE_DATE', 'Invoice Date');
+define('SALES_ORDER_RECEIPT_DATE', 'Receipt Date');
+define('SALES_ORDER_CONFIRM_CHANGE_ORDER_DATE', 'If you change order date, all order detail will be renew.');
+define('SALES_ORDER_CONFIRM_CHANGE_COMPANY', 'If you change company, form will be reset.');
+define('SALES_ORDER_CONFIRM_CHANGE_LOCATION', 'If you change location, all order detail will be renew.');
+define('SALES_ORDER_ADD_SERVICE', 'Add Service');
+define('SALES_ORDER_DELIVERY_NOTE', 'Delivery Note');
+define('SALES_ORDER_POINT_OF_SALE', 'Point Of Sale System');
+define('SALES_ORDER_BARCODE', 'Barcode');
+define('SALES_ORDER_ADD_PRODUCT_TO_STOCK', 'Add product to stock.');
+define('SALES_ORDER_NO_PRODUCT_TO_DELIVER', 'No product to deliver.');
+define('SALES_ORDER_NO_PRICING_RULE', 'No Pricing Rule.');
+define('SALES_ORDER_DEPOSIT_TO', 'Deposit to');
+define('SALES_ORDER_DELIVERY_NOTE_DETAIL', 'DELIVERY NOTE DETAIL');
+define('SALES_ORDER_DELIVERY_NOTE_SUMMARY', 'DELIVERY NOTE SUMMARY');
+define('SALES_ORDER_DELIVERY_NOTE_SALE_FREE', 'DELIVERY NOTE SALE & FREE');
+define('SALES_ORDER_DELIVERY_NOTE_PRODUCT_SALE', 'Product For Sale');
+define('SALES_ORDER_DELIVERY_NOTE_PRODUCT_FREE', 'Product For Free');
+define('INVOICE_DELIVERY_NOTE_SALE_FREE', 'Invoice By Sale & Free');
+?>

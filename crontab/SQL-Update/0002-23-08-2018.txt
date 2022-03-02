@@ -1,0 +1,10 @@
+UPDATE module_types SET status = 0 WHERE id = 48;
+UPDATE module_types SET status = 0 WHERE id = 23;
+UPDATE module_types SET status = 0 WHERE id = 69;
+UPDATE module_types SET status = 0 WHERE id = 53;
+
+
+UPDATE modules SET status = 0 WHERE module_type_id = 48;
+UPDATE modules SET status = 0 WHERE module_type_id = 23;
+UPDATE modules SET status = 0 WHERE module_type_id = 69;
+UPDATE modules SET status = 0 WHERE module_type_id = 53;

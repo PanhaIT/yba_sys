@@ -1,0 +1,27 @@
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08a2318', (SELECT id FROM `modules` WHERE name = 'Point Of Sales (Add)' LIMIT 1), 'point_of_sales', 'membershipCardDis');
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08a2dse', (SELECT id FROM `modules` WHERE name = 'Point Of Sales (Add)' LIMIT 1), 'point_of_sales', 'checkMembershipCard');
+
+CREATE TABLE IF NOT EXISTS `promotional_point_pgroups` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `promotional_point_id` bigint(20) DEFAULT NULL,
+  `pgroup_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `promotional_point_id_pgroup_id` (`promotional_point_id`,`pgroup_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08ah123', (SELECT id FROM `modules` WHERE name = 'Point Of Sales (Add)' LIMIT 1), 'point_of_sales', 'getProductPromoPoint');
+
+ALTER TABLE `sales_orders` ADD `card_code` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL COMMENT 'membershipcar discount' AFTER `so_code`;
+
+ALTER TABLE `promotional_points` ADD `total_point` DOUBLE NULL DEFAULT '0' AFTER `end`;
+
+ALTER TABLE `sales_orders` ADD `membership_card_id` INT(11) NULL AFTER `so_code
+
+ALTER TABLE `sales_orders` ADD `total_point` DOUBLE NULL DEFAULT '0.000' AFTER `card_code`;
+
+              
+

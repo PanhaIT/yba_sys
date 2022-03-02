@@ -1,0 +1,2 @@
+UPDATE `sales_orders` SET `total_amount` = '44.700', `balance` = '43.700' WHERE `sales_orders`.`id` = 166614;
+UPDATE `sales_order_details` SET `discount_amount` = '0.870', `unit_price` = '17.400', `total_price` = '17.400' WHERE `sales_order_details`.`id` = 317710;

@@ -1,0 +1,27 @@
+INSERT INTO `module_types` (`id`, `sys_code`, `name`, `ordering`, `group_by`, `status`) VALUES (NULL, '9b5762f0bf43cae9d63edffa1d4fvgbj', 'Meeting Theme', '139', 'Todo List', '1');
+
+INSERT INTO `modules` (`sys_code`, `module_type_id`, `name`, `ordering`, `status`) VALUES
+('11d7d8a741b244ba75e2dec8e08aecfr', (SELECT id FROM `module_types` WHERE name = 'Meeting Theme' LIMIT 1), 'Meeting Theme (Add)', 1, 1),
+('11d7d8a741b244ba75e2dec8e08aeqax', (SELECT id FROM `module_types` WHERE name = 'Meeting Theme' LIMIT 1), 'Meeting Theme (Edit)', 1, 1),
+('11d7d8a741b244ba75e2dec8e084r4ax', (SELECT id FROM `module_types` WHERE name = 'Meeting Theme' LIMIT 1), 'Meeting Theme (View)', 1, 1),
+('11d7d8a741b244ba75e2dec8e033eeee', (SELECT id FROM `module_types` WHERE name = 'Meeting Theme' LIMIT 1), 'Meeting Theme (Delete)', 1, 1);
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08amklo', (SELECT id FROM `modules` WHERE name = 'Meeting Theme (Add)' LIMIT 1), 'meeting_themes', 'add'),
+('1ad7d8a741b244bwe7e13cc8e08amjhy', (SELECT id FROM `modules` WHERE name = 'Meeting Theme (Edit)' LIMIT 1), 'meeting_themes', 'edit'),
+('1ad7d8a741b244bwe7e13cc8e08agbv0', (SELECT id FROM `modules` WHERE name = 'Meeting Theme (View)' LIMIT 1), 'meeting_themes', 'view'),
+('1ad7d8a741b244bwe7e13cc8e08agbv0', (SELECT id FROM `modules` WHERE name = 'Meeting Theme (View)' LIMIT 1), 'meeting_themes', 'index'),
+('1ad7d8a741b244bwe7e13cc8e08agbv0', (SELECT id FROM `modules` WHERE name = 'Meeting Theme (View)' LIMIT 1), 'meeting_themes', 'ajax'),
+('1ad7d8a741b244bwe7e13cc8e08amjhy', (SELECT id FROM `modules` WHERE name = 'Meeting Theme (Delete)' LIMIT 1), 'meeting_themes', 'delete'),
+('1ad7d8a741b244bwe7e13cc8e08aqswe', (SELECT id FROM `modules` WHERE name = 'Meeting Theme (View)' LIMIT 1), 'meeting_themes', 'todoListByUser'),
+('1ad7d8a741b244bwe7e13cc8e08aqswe', (SELECT id FROM `modules` WHERE name = 'Meeting Theme (View)' LIMIT 1), 'meeting_themes', 'todoList'),
+('1ad7d8a741b244bwe7e13cc8e08aqswe', (SELECT id FROM `modules` WHERE name = 'Meeting Theme (View)' LIMIT 1), 'meeting_themes', 'todoListAjax');
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08agbv0', (SELECT id FROM `modules` WHERE name = 'Meeting Theme (View)' LIMIT 1), 'meeting_themes', 'viewTodoList');
+
+INSERT INTO `modules` (`sys_code`, `module_type_id`, `name`, `ordering`, `status`) VALUES
+('11d7d8a741b244ba75e2dec8e08aecfr', (SELECT id FROM `module_types` WHERE name = 'Meeting Theme' LIMIT 1), 'Meeting Theme (View By User)', 1, 1);
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08amklo', (SELECT id FROM `modules` WHERE name = 'Meeting Theme (View By User)' LIMIT 1), 'meeting_themes', 'viewByUser');

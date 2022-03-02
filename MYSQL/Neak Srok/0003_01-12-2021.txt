@@ -1,0 +1,348 @@
+ALTER TABLE `sales_orders`
+	ADD COLUMN `catalog_order_id` INT(11) NULL DEFAULT NULL AFTER `branch_id`,
+	CHANGE COLUMN `currency_center_id` `currency_id` INT(11) NULL DEFAULT NULL AFTER `location_group_id`,
+	ADD COLUMN `zone_id` INT(11) NULL DEFAULT NULL AFTER `price_type_id`,
+	DROP INDEX `key_filter`,
+	ADD INDEX `key_filter` (`company_id`, `customer_id`, `customer_contact_id`, `quotation_id`, `currency_id`, `vat_setting_id`, `price_type_id`, `branch_id`) USING BTREE;
+
+CREATE TABLE IF NOT EXISTS `device_activity_logs` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `type` int(11) DEFAULT NULL COMMENT '1: Category; 2: Favorite; 3: Cart',
+  `module_id` int(11) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL COMMENT '1: Add; 2: Update; 3: Delete; 4: View; 5: List View',
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `device_logs` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) NOT NULL,
+  `device` tinyint(4) DEFAULT NULL COMMENT '1: Computer; 2: IOS; 3: Adroid; 4: Win Phone',
+  `type` tinyint(4) DEFAULT NULL COMMENT '0: Sign Out; 1: Sign In',
+  `os_name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `os_version` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `browser_name` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `browser_version` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `country_name` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lats` text COLLATE utf8_unicode_ci,
+  `longs` text COLLATE utf8_unicode_ci,
+  `ip` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `created_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `device_status_logs` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) DEFAULT NULL,
+  `type` tinyint(4) DEFAULT NULL COMMENT '0: Online Background; 1: Online Frontground',
+  `device` tinyint(4) DEFAULT NULL COMMENT '1: Computer; 2: IOS; 3: Adroid; 4: Win Phone',
+  `device_token` text,
+  `expired_device_token` date DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `device_status_log_histories` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) DEFAULT NULL,
+  `type` tinyint(4) DEFAULT NULL COMMENT '0: Online Background; 1: Online Frontground',
+  `device` tinyint(4) DEFAULT NULL COMMENT '1: Computer; 2: IOS; 3: Adroid; 4: Win Phone',
+  `device_token` text,
+  `expired_device_token` date DEFAULT NULL,
+  `os_name` varchar(50) DEFAULT NULL,
+  `os_version` varchar(50) DEFAULT NULL,
+  `browser_name` varchar(150) DEFAULT NULL,
+  `browser_version` varchar(150) DEFAULT NULL,
+  `country_name` varchar(150) DEFAULT NULL,
+  `city` varchar(150) DEFAULT NULL,
+  `lats` text,
+  `longs` text,
+  `ip` varchar(150) DEFAULT NULL,
+  `description` text,
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `coupons` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `sys_code` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `company_id` int(10) DEFAULT NULL,
+  `income_chart_account_id` int(10) DEFAULT NULL,
+  `expense_chart_account_id` int(10) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `percent` decimal(5,3) DEFAULT NULL,
+  `amount` decimal(15,3) DEFAULT NULL,
+  `expired_date` date DEFAULT NULL,
+  `period_used` int(11) DEFAULT '3',
+  `created` datetime DEFAULT NULL,
+  `created_by` bigint(20) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `modified_by` bigint(20) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `name` (`name`),
+  KEY `company_id` (`company_id`),
+  KEY `sys_code` (`sys_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `coupon_queue_users` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) DEFAULT NULL,
+  `amount` decimal(15,3) DEFAULT '0.000',
+  `created_at` datetime DEFAULT NULL,
+  `created_by` bigint(20) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `coupon_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `coupon_id` int(11) DEFAULT NULL,
+  `amount` decimal(15,3) DEFAULT NULL,
+  `issue_date` date DEFAULT NULL,
+  `expired_date` date DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `coupon_user_histories` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `catalog_order_id` bigint(20) DEFAULT NULL,
+  `amount` decimal(15,3) DEFAULT '0.000',
+  `created_at` datetime DEFAULT NULL,
+  `created_by` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+RENAME TABLE `currency_centers` TO `currencies`;
+
+ALTER TABLE `sales_invsoices`
+	CHANGE COLUMN `currency_center_id` `currency_id` INT(11) NULL DEFAULT NULL AFTER `customer_contact_id`,
+	DROP INDEX `key_filter`,
+	ADD INDEX `key_filter` (`company_id`, `location_group_id`, `location_id`, `customer_id`, `customer_contact_id`, `currency_id`, `payment_term_id`, `price_type_id`, `sales_rep_id`, `branch_id`) USING BTREE;
+
+ALTER TABLE `sales_returns`
+	CHANGE COLUMN `currency_center_id` `currency_id` INT(11) NULL DEFAULT NULL AFTER `customer_id`,
+	DROP INDEX `key_filter`,
+	ADD INDEX `key_filter` (`location_group_id`, `location_id`, `company_id`, `customer_id`, `currency_id`, `vat_chart_account_id`, `vat_setting_id`, `branch_id`) USING BTREE;
+
+ALTER TABLE `quotations`
+	CHANGE COLUMN `currency_center_id` `currency_id` INT(11) NULL DEFAULT NULL AFTER `quotation_date`,
+	DROP INDEX `key_filter`,
+	ADD INDEX `key_filter` (`company_id`, `customer_id`, `customer_contact_id`, `currency_id`, `price_type_id`, `vat_setting_id`, `branch_id`) USING BTREE;
+
+ALTER TABLE `purchase_bills`
+	CHANGE COLUMN `currency_center_id` `currency_id` INT(11) NULL DEFAULT NULL AFTER `vendor_id`,
+	DROP INDEX `key_filters`,
+	ADD INDEX `key_filters` (`company_id`, `branch_id`, `location_group_id`, `location_id`, `vendor_id`, `currency_id`, `vat_chart_account_id`, `vat_setting_id`) USING BTREE;
+
+ALTER TABLE `purchase_orders`
+	CHANGE COLUMN `currency_center_id` `currency_id` INT(11) NOT NULL AFTER `pr_code`,
+	DROP INDEX `filter_first`,
+	ADD INDEX `filter_first` (`company_id`, `branch_id`, `vendor_id`, `currency_id`, `vat_setting_id`) USING BTREE;
+
+ALTER TABLE `purchase_returns`
+	CHANGE COLUMN `currency_center_id` `currency_id` INT(11) NULL DEFAULT NULL AFTER `vendor_id`,
+	DROP INDEX `key_filter`,
+	ADD INDEX `key_filter` (`company_id`, `location_group_id`, `location_id`, `vendor_id`, `currency_id`, `ap_id`, `vat_chart_account_id`, `vat_setting_id`, `branch_id`) USING BTREE;
+
+ALTER TABLE `purchase_return_receipts`
+	CHANGE COLUMN `currency_center_id` `currency_id` INT(11) NULL DEFAULT NULL AFTER `exchange_rate_id`;
+
+ALTER TABLE `landing_costs`
+	CHANGE COLUMN `currency_center_id` `currency_id` INT(11) NULL DEFAULT NULL AFTER `ap_id`;
+
+ALTER TABLE `landing_cost_receipts`
+	CHANGE COLUMN `currency_center_id` `currency_id` INT(11) NULL DEFAULT NULL AFTER `exchange_rate_id`;
+
+ALTER TABLE `pvs`
+	CHANGE COLUMN `currency_center_id` `currency_id` INT(11) NULL DEFAULT NULL AFTER `exchange_rate_id`;
+
+ALTER TABLE `stock_orders`
+	CHANGE COLUMN `sales_order_id` `sales_invoice_id` INT(11) NULL DEFAULT NULL AFTER `sys_code`,
+	CHANGE COLUMN `sales_order_detail_id` `sales_invoice_detail_id` INT(11) NULL DEFAULT NULL AFTER `sales_invoice_id`,
+	CHANGE COLUMN `order_id` `sales_order_id` INT(11) NULL DEFAULT NULL AFTER `purchase_return_detail_id`,
+	CHANGE COLUMN `order_detail_id` `sales_order_detail_id` INT(11) NULL DEFAULT NULL AFTER `sales_order_id`,
+	CHANGE COLUMN `cycle_product_id` `inventory_adjustment_id` INT(11) NULL DEFAULT NULL AFTER `sales_order_detail_id`,
+	DROP INDEX `key_filter`,
+	ADD INDEX `key_filter` (`sales_invoice_id`, `transfer_order_id`, `purchase_return_id`, `sales_invoice_detail_id`, `sales_order_id`, `sales_order_detail_id`) USING BTREE;
+ALTER TABLE `transfer_order_receipts`
+	CHANGE COLUMN `currency_center_id` `currency_id` INT(11) NULL DEFAULT NULL AFTER `exchange_rate_id`;
+
+
+
+CREATE TABLE IF NOT EXISTS `company_currencies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) DEFAULT NULL,
+  `currency_id` int(11) DEFAULT NULL,
+  `exchange_rate_id` int(11) DEFAULT NULL,
+  `rate_to_sell` decimal(15,9) DEFAULT NULL,
+  `rate_to_change` decimal(15,9) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `created_by` bigint(20) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `modified_by` bigint(20) DEFAULT NULL,
+  `is_pos_default` tinyint(4) DEFAULT '0',
+  `is_active` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `key_searchs` (`company_id`,`currency_center_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+
+INSERT INTO `company_currencies` (`id`, `company_id`, `currency_id`, `exchange_rate_id`, `rate_to_sell`, `rate_to_change`, `created`, `created_by`, `modified`, `modified_by`, `is_pos_default`, `is_active`) VALUES
+(1, 1, 2, 23, '4100.000000000', '4100.000000000', '2016-09-05 16:21:36', 2, '2019-07-26 16:30:44', 2, 1, 1),
+(2, 1, 3, NULL, NULL, NULL, '2016-09-05 16:22:04', 2, '2016-09-05 16:23:27', 2, 0, 2);
+
+ALTER TABLE `companies`
+	CHANGE COLUMN `currency_center_id` `currency_id` INT(11) NULL DEFAULT NULL AFTER `name_other`,
+	DROP INDEX `currency_center_id`,
+	ADD INDEX `currency_center_id` (`currency_id`) USING BTREE;
+
+ALTER TABLE `branches`
+	CHANGE COLUMN `currency_center_id` `currency_id` INT(11) NULL DEFAULT NULL AFTER `address_other`;
+
+ALTER TABLE `branch_currencies`
+	CHANGE COLUMN `currency_center_id` `currency_id` INT(11) NULL DEFAULT NULL AFTER `branch_id`,
+	DROP INDEX `key_searchs`,
+	ADD INDEX `key_searchs` (`branch_id`, `currency_id`) USING BTREE;
+
+
+DROP TRIGGER `zBranchCurrencyBfInsert`;
+CREATE DEFINER=`root`@`localhost` TRIGGER `zBranchCurrencyBfInsert` BEFORE INSERT ON `branch_currencies` FOR EACH ROW BEGIN
+	IF NEW.sys_code = "" OR NEW.sys_code = NULL OR NEW.branch_id = "" OR NEW.branch_id = NULL OR NEW.currency_id = "" OR NEW.currency_id = NULL THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid Data';
+	END IF;
+END;
+
+
+DROP TRIGGER `zCompanyBeforeInsert`;
+CREATE DEFINER=`root`@`localhost` TRIGGER `zCompanyBeforeInsert` BEFORE INSERT ON `companies` FOR EACH ROW BEGIN
+	IF NEW.sys_code = "" OR NEW.sys_code = NULL OR NEW.photo = "" OR NEW.photo = NULL OR NEW.name = "" OR NEW.name = NULL OR NEW.name_other = "" OR NEW.name_other = NULL OR NEW.currency_id = "" OR NEW.currency_id = NULL OR NEW.vat_calculate = "" OR NEW.vat_calculate = NULL THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid Data';
+	END IF;
+END;
+
+
+DROP TRIGGER `zCompanyBfUpdate`;
+CREATE DEFINER=`root`@`localhost` TRIGGER `zCompanyBfUpdate` BEFORE UPDATE ON `companies` FOR EACH ROW BEGIN
+	IF NEW.sys_code = "" OR NEW.sys_code = NULL OR NEW.photo = "" OR NEW.photo = NULL OR NEW.name = "" OR NEW.name = NULL OR NEW.name_other = "" OR NEW.name_other = NULL OR NEW.currency_id = "" OR NEW.currency_id = NULL OR NEW.vat_calculate = "" OR NEW.vat_calculate = NULL THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid Data';
+	END IF;
+END;
+
+ALTER TABLE `catalog_orders`
+	CHANGE COLUMN `currency_center_id` `currency_id` INT(11) NULL DEFAULT NULL AFTER `date`,
+	DROP INDEX `key_filter`,
+	ADD INDEX `key_filter` (`company_id`, `customer_id`, `customer_contact_id`, `currency_id`, `price_type_id`, `vat_setting_id`, `branch_id`) USING BTREE;
+
+ALTER TABLE `exchange_rates`
+	CHANGE COLUMN `currency_center_id` `currency_id` INT(11) NULL DEFAULT NULL AFTER `branch_id`,
+	DROP INDEX `key_searchs`,
+	ADD INDEX `key_searchs` (`currency_id`) USING BTREE;
+
+ALTER TABLE `sales_invoice_receipts`
+	CHANGE COLUMN `currency_center_id` `currency_id` INT(11) NULL DEFAULT NULL AFTER `exchange_rate_id`;
+
+
+ALTER TABLE `vendor_consignments`
+	CHANGE COLUMN `currency_center_id` `currency_id` INT(11) NULL DEFAULT NULL AFTER `location_id`;
+
+DROP TRIGGER `zExchangeRateBfInsert`;
+CREATE DEFINER=`root`@`localhost` TRIGGER `zExchangeRateBfInsert` BEFORE INSERT ON `exchange_rates` FOR EACH ROW BEGIN
+	IF NEW.sys_code = "" OR NEW.sys_code = NULL OR NEW.branch_id = "" OR NEW.branch_id = NULL OR NEW.currency_id = "" OR NEW.currency_id = NULL OR NEW.rate_to_sell = "" OR NEW.rate_to_sell = NULL OR NEW.rate_to_change = "" OR NEW.rate_to_change = NULL THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid Data';
+	END IF;
+END;
+
+DROP TRIGGER `zPurchaseRequestBeforeInsert`;
+CREATE DEFINER=`root`@`localhost` TRIGGER `zPurchaseRequestBeforeInsert` BEFORE INSERT ON `purchase_orders` FOR EACH ROW BEGIN
+	IF NEW.company_id IS NULL OR NEW.branch_id IS NULL OR NEW.vendor_id IS NULL OR NEW.order_date IS NULL OR NEW.order_date = '' OR NEW.order_date = '0000-00-00' OR NEW.currency_id IS NULL OR NEW.vat_percent IS NULL OR NEW.vat_setting_id IS NULL OR NEW.vat_calculate IS NULL OR NEW.total_vat IS NULL OR NEW.total_amount IS NULL THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid Data';
+	END IF;
+END;
+
+
+UPDATE `sas_0432_sursas`.`module_details` SET `controllers` = 'currencies' WHERE `module_details`.`controllers` = 'currency_centers';
+UPDATE `sas_0432_sursas`.`module_details` SET `controllers` = 'inventory_adjustments' WHERE `module_details`.`controllers` = 'inv_adjs';
+UPDATE `sas_0432_sursas`.`module_details` SET `controllers` = 'sales_invoices' WHERE `module_details`.`controllers` = 'sales_orders';
+UPDATE `sas_0432_sursas`.`module_details` SET `controllers` = 'sales_orders' WHERE `module_details`.`controllers` = 'orders';
+UPDATE `sas_0432_sursas`.`module_details` SET `controllers` = 'purchase_bills' WHERE `module_details`.`controllers` = 'purchase_orders';
+UPDATE `sas_0432_sursas`.`module_details` SET `controllers` = 'purchase_orders' WHERE `module_details`.`controllers` = 'purchase_requests';
+ALTER TABLE `sales_return_receipts` CHANGE `currency_center_id` `currency_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `companies` ADD INDEX( `currency_id`);
+ALTER TABLE `companies`
+	DROP INDEX `currency_center_id`;
+
+ALTER TABLE `dashboard_receivable`
+	CHANGE COLUMN `sales_order_id` `sales_invoice_id` INT(11) NULL DEFAULT NULL AFTER `branch_id`,
+	DROP INDEX `filter`,
+	ADD INDEX `filter` (`sales_invoice_id`, `chart_account_id`) USING HASH;
+
+ALTER TABLE `dashboard_payable`
+	CHANGE COLUMN `purchase_order_id` `purchase_bill_id` INT(11) NULL DEFAULT NULL AFTER `branch_id`,
+	DROP INDEX `filter`,
+	ADD INDEX `filter` (`purchase_bill_id`, `chart_account_id`) USING HASH;
+
+CREATE TABLE IF NOT EXISTS `transactions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` char(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `module_id` int(11) DEFAULT NULL,
+  `file` char(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `accounting` int(11) DEFAULT '0',
+  `save_acct` int(11) DEFAULT '0',
+  `products` int(11) DEFAULT '0',
+  `service` int(11) DEFAULT '0',
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `action` tinyint(4) DEFAULT '1' COMMENT '1: Add; 2: Void',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique` (`type`,`module_id`,`action`),
+  KEY `created` (`created`),
+  KEY `type` (`type`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `transaction_details` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `transaction_id` int(11) DEFAULT NULL,
+  `type` tinyint(4) DEFAULT NULL COMMENT '1: Product; 2: Service',
+  `module_id` int(11) DEFAULT NULL,
+  `accounting` int(11) DEFAULT '0',
+  `save_acct` int(11) DEFAULT '0',
+  `inventory_valutaion` tinyint(4) DEFAULT '0',
+  `inventory` tinyint(4) DEFAULT '0',
+  `inventory_total` tinyint(4) DEFAULT '0',
+  `loc_inventory` tinyint(4) DEFAULT '0',
+  `loc_inventory_total` tinyint(4) DEFAULT '0',
+  `loc_inventory_detail` tinyint(4) DEFAULT '0',
+  `g_inventory` tinyint(4) DEFAULT '0',
+  `g_inventory_detail` tinyint(4) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `transaction_id` (`transaction_id`),
+  KEY `type` (`type`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+ALTER TABLE `1_group_total_details` ADD `transaction_detail_id` INT(11) NULL AFTER `location_group_id`;
+ALTER TABLE `1_inventories` ADD `transaction_detail_id` INT(11) NULL AFTER `id`;
+ALTER TABLE `1_inventory_totals` ADD `transaction_detail_id` INT(11) NULL AFTER `location_id`;
+ALTER TABLE `1_inventory_total_details` ADD ` transaction_detail_id` INT(11) NULL AFTER `expired_date`;
+ALTER TABLE `inventories` ADD `transaction_detail_id` INT(11) NULL AFTER `id`;
+ALTER TABLE `inventory_totals` ADD `transaction_detail_id` INT(11) NULL AFTER `expired_date`;
+ALTER TABLE `inventory_valuations` ADD `transaction_detail_id` INT(11) NULL AFTER `inv_adj_id`;
+ALTER TABLE `product_inventories` ADD `transaction_detail_id` INT(11) NULL AFTER `expired_date`;
+ALTER TABLE `1_group_totals` ADD `transaction_detail_id` INT(11) NULL AFTER `expired_date`;
+
+
+
+
+
+
+
+
+

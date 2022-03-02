@@ -1,0 +1,5 @@
+ALTER TABLE `module_code_branches`
+	ADD COLUMN `expense_code` CHAR(50) NULL DEFAULT NULL AFTER `receive_collect_shift`;
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('1186ebaf6d883018fefec66a379801a6', 607, 'expenses', 'addExpenseType');
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('a63ae2022454c15dd8f621b0ac767a0c', 149, 'point_of_sales', 'customerDisplay');

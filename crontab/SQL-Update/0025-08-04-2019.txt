@@ -1,0 +1,22 @@
+UPDATE `inventories` SET `qty`=-12.000 WHERE  `id`=34254;
+UPDATE `inventories` SET `qty`=12 WHERE  `id`=34255;
+
+UPDATE `5_inventories` SET `qty`=-12.000 WHERE  `id`=3401;
+UPDATE `3_inventories` SET `qty`=12 WHERE  `id`=11969;
+
+UPDATE 5_inventory_totals SET total_qty = (total_qty + 348) WHERE product_id = 1067
+UPDATE 3_inventory_totals SET total_qty = (total_qty - 348) WHERE product_id = 1067
+
+UPDATE 5_group_totals SET total_qty = (total_qty + 348) WHERE product_id = 1067
+UPDATE 3_group_totals SET total_qty = (total_qty - 348) WHERE product_id = 1067
+
+UPDATE 5_inventory_total_details SET total_to_out = (total_to_out - 348) WHERE product_id = 1067 AND date = '2019-04-05'
+UPDATE 3_inventory_total_details SET total_to_in = (total_to_in - 348) WHERE product_id = 1067 AND date = '2019-04-05'
+
+UPDATE 5_group_total_details SET total_to_out = (total_to_out - 348) WHERE product_id = 1067 AND date = '2019-04-05'
+UPDATE 3_group_total_details SET total_to_in = (total_to_in - 348) WHERE product_id = 1067 AND date = '2019-04-05'
+
+UPDATE inventory_totals SET total_to_in = (total_to_in - 348), total_to_out = (total_to_out - 348) WHERE product_id = 1067
+
+UPDATE product_inventories SET total_qty = (total_qty + 348) WHERE product_id = 1067 AND location_group_id = 5;
+UPDATE product_inventories SET total_qty = (total_qty - 348) WHERE product_id = 1067 AND location_group_id = 3;

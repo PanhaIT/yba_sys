@@ -1,0 +1,43 @@
+TRUNCATE `customers`;
+TRUNCATE `customer_cgroups`;
+TRUNCATE `customer_companies`;
+TRUNCATE `customer_contacts`;
+TRUNCATE `dashboard_payable`;
+TRUNCATE `dashboard_profit_loss`;
+TRUNCATE `dashboard_receivable`;
+TRUNCATE `inventories`;
+TRUNCATE `inventory_valuations`;
+TRUNCATE `meeting_notes`;
+TRUNCATE `meeting_themes`;
+TRUNCATE `services`;
+TRUNCATE `service_branches`;
+TRUNCATE `service_groups`;
+TRUNCATE `todo_lists`;
+TRUNCATE `todo_list_details`;
+TRUNCATE `user_share_todolists`;
+
+TRUNCATE `customers`;
+TRUNCATE `customer_cgroups`;
+TRUNCATE `customer_companies`;
+TRUNCATE `customer_contacts`;
+TRUNCATE `egroups`;
+TRUNCATE `egroup_companies`;
+TRUNCATE `employees`;
+TRUNCATE `employee_companies`;
+TRUNCATE `employee_egroups`;
+TRUNCATE `employee_types`;
+
+
+TRUNCATE `cgroups`;
+TRUNCATE `cgroup_companies`;
+TRUNCATE `cgroup_price_types`;
+TRUNCATE `egroups`;
+TRUNCATE `egroup_companies`;
+TRUNCATE `vendors`;
+TRUNCATE `vendor_companies`;
+TRUNCATE `vendor_consignments`;
+TRUNCATE `vendor_consignment_details`;
+TRUNCATE `vendor_consignment_returns`;
+TRUNCATE `vendor_consignment_return_details`;
+TRUNCATE `vendor_contacts`;
+TRUNCATE `vendor_vgroups`;

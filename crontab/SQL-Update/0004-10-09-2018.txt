@@ -1,0 +1,33 @@
+UPDATE `s_module_detail_settings` SET `is_active`=0 WHERE  `id`=19;
+UPDATE `s_module_detail_settings` SET `is_active`=0 WHERE  `id`=21;
+UPDATE `s_module_detail_settings` SET `is_active`=0 WHERE  `id`=41;
+
+INSERT INTO `s_module_detail_settings` (`s_module_setting_id`, `name`, `value`, `ordering`, `is_use_integer`, `is_use_checked`) VALUES (19, 'AVG Cost', 6, 3, 1, 0);
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('06caee0a978113fe704d082d65e6484d', 1, 'dashboards', 'refreshMenu');
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('06caee0a978113fe704d082d65e6484d', 632, 'settings', 'saveLockTransaction');
+
+CREATE TABLE `account_closing_date_histories` (
+	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+	`date` DATE NULL DEFAULT NULL,
+	`created` DATETIME NULL DEFAULT NULL,
+	`created_by` BIGINT(20) NULL DEFAULT NULL,
+	PRIMARY KEY (`id`)
+)
+COLLATE='utf8_unicode_ci'
+ENGINE=InnoDB;
+
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='';
+DELIMITER //
+CREATE TRIGGER `zAccountClosingAfUpdate` AFTER UPDATE ON `account_closing_dates` FOR EACH ROW BEGIN
+	INSERT INTO account_closing_date_histories (`date`, `created`, `created_by`) VALUES (NEW.date, NEW.created, NEW.created_by);
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+UPDATE `module_details` SET `module_id`=1 WHERE  `id`=323;
+UPDATE `module_details` SET `module_id`=1 WHERE  `id`=324;
+UPDATE `module_details` SET `module_id`=1 WHERE  `id`=395;
+UPDATE `module_details` SET `module_id`=1 WHERE  `id`=394;
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('fb377bed0da7fa79dcbf3a529865913e', 1, 'reports', 'searchVgroup');

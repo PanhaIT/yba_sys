@@ -1,0 +1,486 @@
+@charset "utf-8";
+/** Template Style Info **/
+* {
+    font-family: "Leelawadee UI", "Kh-Battambang", serif;
+}
+
+body {
+    margin:0;
+    padding:0;
+    background-color: #DADADA;
+}
+
+input{
+    border-radius: 5px;
+    text-align: right;
+}
+
+#dynamic input{
+    texit-align: left;
+}
+
+.posContent{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #DADADA;
+}
+.posHeader{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #3274b5;
+}
+.posContentBody{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #DADADA;
+}
+.posContentFooter{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #f23535;
+}
+.posContentLeft{
+    margin: 0;
+    padding: 0;
+    width: 75%;
+    background-color: #DADADA;
+    float: left;
+}
+.posContentRight{
+    margin: 0;
+    padding: 0;
+    width: 24.5%;
+    background-color: #DADADA;
+    float: right;
+}
+.posHeader .posTblHeader{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    color: #fff;
+    font-size: 16px;
+}
+
+#closeClock{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-size: 20px;    
+}
+.headerPadding{
+    margin: 0;
+    padding: 0;
+    width: 6%;
+    text-align: center;
+    vertical-align: middle;
+}
+.headerLeftWidth{
+    margin: 0;
+    padding: 0;
+    width: 12%;
+    text-align: center;
+    vertical-align: middle;
+}
+.headerLeftWidth select{
+    margin: 0;
+    padding: 0;
+    width: 90%;
+    text-align: left;
+    vertical-align: middle;
+}
+.headerIconRight{
+    margin: 0;
+    padding: 0;
+    width: 8%;
+    text-align: center;
+    vertical-align: middle;
+}
+.headerIconRight:last-child{
+    width: 5%;
+}
+.posContentLeftPadding{
+    margin: 0;
+    margin-top: 5px;
+    margin-left: 5px;
+    padding: 10px;
+    background-color: #FFF;
+    border: 1px solid #818487;
+}
+.posContentLeftSearchProduct{
+    margin: 0;
+    padding: 0px;
+    padding-bottom: 5px;
+    width: 100%;
+}
+#listTitleSearch{
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+}
+#listTitleSearch input{
+    width: 300px;
+}
+.clearOrderList{
+    background-color: #FF0000;
+    text-align: center;
+    border-radius: 5px;
+    color: #FFF;
+    width: 13%;
+    font-size: 16px;
+    float: right;
+}
+
+.addNewProduct{
+    background-color: #3274b5;
+    text-align: center;
+    border-radius: 5px;
+    color: #FFF;
+    width: 13%;
+    font-size: 16px;
+    float: right;
+}
+
+.contentPosListProduct{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border: 1px solid #818487;
+}
+
+/*List Product Header Item*/
+.posLlistProduct{
+    border-collapse: collapse; 
+    width:100%;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #818487;
+}    
+.posLlistProduct th{
+    text-align: center;
+    height: 30px;
+    font-size: 12px;
+}
+.posLlistProduct, .posLlistProduct th{
+    font-size: 12px;
+}
+
+/*List Product Item*/
+#tblPOS{
+    width:100%; 
+    margin: 0px; 
+    padding: 0px; 
+    text-align: center; 
+    border-collapse: collapse; 
+    border: none;
+}
+
+.listTable{
+    border-bottom: 1px solid #818487;
+}
+
+.productName{
+    font-weight: bold;
+    font-size: 12px;
+}
+
+#bodyList{
+    margin: 0px; 
+    padding: 0px; 
+}
+#bodyList td{
+    background-color: #EEE;
+    text-align: center;
+    font-size: 12px;
+}
+#bodyList img{
+    width: 16px;
+    vertical-align: middle;
+}
+#bodyList span:first-child{
+    font-size: 12px; 
+    font-weight: bold; 
+    display: block;
+}
+#bodyList span:first-child{
+    font-size: 12px; 
+    font-weight: bold; 
+    display: block;
+}
+#bodyList span:last-child{
+    font-size: 12px; 
+    display: block;
+}
+#bodyList input{
+    text-align: center;
+    height: 15px;
+}
+#bodyList select{
+    width: 90%;
+    height: 32px;
+}
+
+.leftSearchProduct{
+    background-color: #3274b5; 
+    color: #FFF;
+    padding: 7px; 
+}
+.leftSearchProduct img{
+    width: 30px;
+}
+.leftSearchProduct td:last-child{
+    padding-left: 10px; 
+    text-transform: uppercase; 
+    font-weight: bold; 
+    font-size: 14px;
+}
+
+/*Left Search Customer*/
+.leftSearchCustomer{
+    background-color: #3274b5; 
+    padding: 7px; 
+    margin-top: 2px;
+}
+.leftSearchCustomer table{
+    width: 100%;
+}
+.leftSearchCustomer img{
+    width: 30px;
+}
+.leftSearchCustomer td:last-child{
+    padding-left: 10px; 
+    text-transform: uppercase; 
+    font-weight: bold; 
+    font-size: 14px; 
+    width: 95%;
+}
+.leftSearchCustomer input{
+    width: 97%;
+    height: 20px;
+}
+
+/*Input Search Customer*/
+.leftLabelSearchCustomer{
+    background-color: #FFF; 
+    padding: 7px; 
+    margin-top: 2px;
+}
+.leftLabelSearchCustomer table{
+    width: 100%;
+}
+.leftLabelSearchCustomer img{
+    width: 30px;
+}
+.leftLabelSearchCustomer td:last-child{
+    color: #000; 
+    font-weight: bold; 
+    width: 90%;
+}
+
+.ActScanCode, .ActNewTab{
+    cursor: pointer;
+}
+
+/*Right Pos Padding*/
+.posContentRightPadding{
+    margin: 0;
+    padding: 0;
+    margin-top: 5px;
+    margin-right: 5px;
+    border: 1px solid #818487;
+}
+
+/*Right Pos Product*/
+.rightPosProduct{
+    background-color: #FFF; 
+    border: 1px solid #EEE; 
+    padding: 7px; 
+    margin-top: 2px;
+}
+.rightPosProduct table{
+    width: 100%; 
+    vertical-align: middle; 
+    height: 100%;
+    text-align: center;
+}
+.rightPosProduct img{
+    max-width: 150px; 
+    max-height: 150px;
+}
+
+/*Button Paid*/
+.leftPosPaid{
+    background-color: #FFF; 
+    border: 1px solid #EEE; 
+    padding: 7px; 
+    margin-top: 2px;
+    color: #FFF;
+}
+.leftPosPaid table{
+    width: 100%;
+}
+.leftPosPaid #paidShow{
+    width: 35%; 
+    height: 50px; 
+    text-align: center; 
+    background-color: #f7a820; 
+    border-radius: 10px 10px; 
+    font-size: 20px; 
+    font-weight: bold; 
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.leftPosPaid .btnReprintReceipt{
+    height: 50px; 
+    text-align: center; 
+    background-color: #3274b5; 
+    border-radius: 10px; 
+    vertical-align: middle;
+}
+.leftPosPaid .btnReprintReceiptImg{
+    width: 40px;
+}
+.leftPosPaid .btnReprintReceiptImg img{
+    width: 30px;
+}
+.leftPosPaid .btnReprintReceiptLabel{
+    text-align: left; 
+    font-size: 14px; 
+    font-weight: bold; 
+    text-transform: uppercase;
+}
+.btnReprintSalesHistory{
+    width: 70%; 
+    height: 50px; 
+    text-align: center; 
+    background-color: #3274b5;
+    border-radius: 10px 10px; 
+    vertical-align: middle;
+}
+.btnReprintSalesHistoryLabel{
+    text-align: left; 
+    font-size: 14px; 
+    font-weight: bold; 
+    text-transform: uppercase;
+}
+.btnReprintSalesHistoryImg{
+    width: 40px;
+}
+.btnReprintSalesHistoryImg img{
+    width: 30px;
+}
+.footerLeftTotal{
+    margin: 0;
+    padding: 0;
+    padding-top: 15px;
+    color:  #000;
+}
+.footerLeftTotal table{
+    width: 100%;
+}
+#headerClock{
+    width: 13%;
+}
+
+.btnPOSPay{
+    float:right; 
+    padding: 10px; 
+    font-weight: bold;
+    box-shadow: 0; 
+    color: #fff; 
+    text-transform: uppercase; 
+    cursor: pointer;
+    text-align: center;
+    background-color: #f7a820;
+}
+
+.btnPOSPayRed{
+    float:right; 
+    padding: 10px; 
+    font-weight: bold;
+    box-shadow: 0; 
+    color: #fff; 
+    text-transform: uppercase; 
+    cursor: pointer;
+    text-align: center;
+    background-color: #ff0000;
+}
+
+.btnPOSPayGreen{
+    float:right; 
+    padding: 10px; 
+    font-weight: bold;
+    box-shadow: 0; 
+    color: #fff; 
+    text-transform: uppercase; 
+    cursor: pointer;
+    text-align: center;
+    background-color: #3274b5;
+}
+
+.btnPOSPayNormal{
+    padding: 10px; 
+    font-weight: bold;
+    box-shadow: 0; 
+    color: #fff; 
+    text-transform: uppercase; 
+    cursor: pointer;
+    text-align: center;
+    background-color: #f7a820;
+}
+
+#PointOfSaleCustomerNameSearch, #PointOfSaleBarcode{
+    text-align: left;
+}
+.current{
+    color: #665c5c;
+}
+.nice-select .option.selected{
+    color: #665c5c;
+}
+.dataTables_filter input{
+    text-align: left;
+}
+/*input, select{
+    border-radius: 7px;
+}*/
+
+.table th.sorting_asc {
+    background: url('../js/DataTables-1.8.1/media/images/sort_asc_pos.png') no-repeat top right !important;
+}
+
+.table th.sorting_desc {
+    background: url('../js/DataTables-1.8.1/media/images/sort_desc_pos.png') no-repeat top right !important;
+}
+
+.table th.sorting {
+    background: url('../js/DataTables-1.8.1/media/images/sort_both_pos.png') no-repeat top right !important;
+}
+
+.table th.sorting_asc_disabled {
+    background: url('../js/DataTables-1.8.1/media/images/sort_asc_disabled_pos.png') no-repeat top right !important;
+}
+
+.table th.sorting_desc_disabled {
+    background: url('../js/DataTables-1.8.1/media/images/sort_desc_disabled_pos.png') no-repeat top right !important;
+}
+
+.textAlignLeft{
+    text-align: left;
+}
+
+.chzn-container-single .chzn-single{
+    height: 35px !important;
+    line-height: 33px !important;
+}
+
+.chzn-container-single .chzn-single div{
+    padding-top: 5px !important;
+}
+
+textArea{
+    border-radius: 5px;
+}

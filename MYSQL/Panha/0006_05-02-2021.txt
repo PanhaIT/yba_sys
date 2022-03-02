@@ -1,0 +1,1 @@
+ALTER TABLE `quotation_details` ADD `qty_free` DECIMAL(15,3) NULL DEFAULT '0' AFTER `qty`;

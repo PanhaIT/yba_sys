@@ -1,0 +1,4 @@
+ALTER TABLE `purchase_requests`
+	CHANGE COLUMN `final_place_of_delivery_id` `shipment_to` TEXT NULL DEFAULT NULL AFTER `port_of_dischange_id`,
+	DROP INDEX `key_filter_second`,
+	ADD INDEX `key_filter_second` (`shipment_id`, `port_of_dischange_id`);

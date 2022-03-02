@@ -1,0 +1,4 @@
+UPDATE `s_module_detail_settings` SET `template`='product.xls' WHERE  `id`=47;
+UPDATE `s_module_detail_settings` SET `template`='customer.xls' WHERE  `id`=48;
+UPDATE `s_module_detail_settings` SET `template`='vendor.xls' WHERE  `id`=49;
+UPDATE `s_module_detail_settings` SET `name`='Inventory Balance Beginning', `template`='adjustment.xls' WHERE  `id`=50;

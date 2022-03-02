@@ -1,0 +1,19 @@
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08ahasw', (SELECT id FROM `modules` WHERE name = 'Promotional Point (View)' LIMIT 1), 'promotional_points', 'product'),
+('1ad7d8a741b244bwe7e13cc8e08ahhjl', (SELECT id FROM `modules` WHERE name = 'Promotional Point (View)' LIMIT 1), 'promotional_points', 'productAjax');
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08ah1sd', (SELECT id FROM `modules` WHERE name = 'Promotional Point (View)' LIMIT 1), 'promotional_points', 'checkPgroup');
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08ahder', (SELECT id FROM `modules` WHERE name = 'Promotional Point (View)' LIMIT 1), 'promotional_points', 'checkDuplicateStartEndDate');
+
+ALTER TABLE `promotional_points` ADD `point_in_dollar` DOUBLE NULL DEFAULT '1' AFTER `total_point`;
+
+ALTER TABLE `promotional_points` ADD `pgroup_id` INT( 11 ) NULL AFTER `branch_id` ;
+
+CREATE TABLE IF NOT EXISTS `promotional_pgroup_tmps` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pgroup_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;

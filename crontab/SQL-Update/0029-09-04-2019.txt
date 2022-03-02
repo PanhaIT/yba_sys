@@ -1,0 +1,7 @@
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('81902e20535b4a281e2319c5341a9355', 209, 'receive_payments', 'printReceipt');
+
+ALTER TABLE `receive_payment_details`
+	ADD COLUMN `is_void` TINYINT NULL DEFAULT '0' AFTER `due_date`;
+
+ALTER TABLE `receive_payment_details`
+	ADD INDEX `search` (`receive_payment_id`, `sales_order_id`);

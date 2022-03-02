@@ -1,0 +1,11 @@
+CREATE TABLE `product_qty_prices` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`product_id` INT(11) NULL DEFAULT NULL,
+	`qty` INT(11) NULL DEFAULT NULL,
+	`unit_price` DECIMAL(15,3) NULL DEFAULT NULL,
+	PRIMARY KEY (`id`),
+	INDEX `product_id` (`product_id`)
+)
+COMMENT='Use for product have only one UoM'
+COLLATE='utf8_unicode_ci'
+ENGINE=InnoDB;

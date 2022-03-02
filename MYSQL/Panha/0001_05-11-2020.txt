@@ -1,0 +1,1 @@
+UPDATE `purchase_requests` SET `is_close`=1 WHERE `order_date`<'2020-09-01';

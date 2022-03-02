@@ -1,0 +1,2 @@
+ALTER TABLE `promotionals` ADD `promotion_type` TINYINT(12) NULL DEFAULT '1' COMMENT '1:buy free the same/difference product,2:buy more than 100$ free one product,2:buy more than 100 get discount 3%,4:buy 5items ifference price get 3items with price 20$' AFTER `apply`;
+

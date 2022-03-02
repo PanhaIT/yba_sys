@@ -1,0 +1,25 @@
+INSERT INTO `module_types` (`id`, `sys_code`, `name`, `ordering`, `group_by`, `status`) VALUES (NULL, '9b5762f0bf43cae9d63edffa1d47b334', 'Pick Slip', '116', 'Sales', '1');
+
+INSERT INTO `modules` (`sys_code`, `module_type_id`, `name`, `ordering`, `status`) VALUES
+('11d7d8a741b244ba75e2dec8e08aedrt', (SELECT id FROM `module_types` WHERE name = 'Pick Slip' LIMIT 1), 'Pick Slip (View)', 1, 1),
+('11d7d8a741b244ba75e2dec8e08aedrt', (SELECT id FROM `module_types` WHERE name = 'Pick Slip' LIMIT 1), 'Pick Slip (Pick)', 1, 1),
+('11d7d8a741b244ba75e2dec8e08aedrt', (SELECT id FROM `module_types` WHERE name = 'Pick Slip' LIMIT 1), 'Pick Slip (Print Invoice Pick Slip)', 1, 1);
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08ahjlp', (SELECT id FROM `modules` WHERE name = 'Pick Slip (View)' LIMIT 1), 'pick_slips', 'view'),
+('1ad7d8a741b244bwe7e13cc8e08ahjlp', (SELECT id FROM `modules` WHERE name = 'Pick Slip (View)' LIMIT 1), 'pick_slips', 'index'),
+('1ad7d8a741b244bwe7e13cc8e08ahjlp', (SELECT id FROM `modules` WHERE name = 'Pick Slip (View)' LIMIT 1), 'pick_slips', 'ajax'),
+('1ad7d8a741b244bwe7e13cc8e08ahjlp', (SELECT id FROM `modules` WHERE name = 'Pick Slip (Pick)' LIMIT 1), 'pick_slips', 'pick'),
+('1ad7d8a741b244bwe7e13cc8e08ahjlp', (SELECT id FROM `modules` WHERE name = 'Pick Slip (Print Invoice Pick Slip)' LIMIT 1), 'pick_slips', 'printInvoicePickSlip');
+
+ALTER TABLE orders ADD order_type TINYINT(4) NOT NULL DEFAULT '0' COMMENT '0: order by office, 1: by mobile sales man' AFTER is_approve;
+ALTER TABLE `orders` ADD `estimate_date` DATE NULL DEFAULT NULL AFTER `order_date`;
+
+ALTER TABLE `deliveries` ADD `sales_order_id` INT( 11 ) NULL AFTER `branch_id`;
+ALTER TABLE `deliveries` ADD `order_id` INT( 11 ) NULL AFTER `sales_order_id`;
+ALTER TABLE `deliveries` ADD `delivery_zone_id` INT( 11 ) NULL AFTER `branch_id`;
+ALTER TABLE `deliveries` ADD `customer_id` INT( 11 ) NULL AFTER `company_id`;
+ALTER TABLE `deliveries` ADD `e_product_catalog_address_id` INT( 11 ) NULL AFTER `order_id`;
+ALTER TABLE `deliveries` ADD `ship_telephone` VARCHAR( 255 ) NULL AFTER `ship_to`;
+ALTER TABLE `deliveries` ADD `type` TINYINT( 4 ) NULL DEFAULT '1' COMMENT '1: Reference By Invoice, 2: Delivery' AFTER `closed_by`;
+

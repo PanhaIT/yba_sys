@@ -1,0 +1,1 @@
+UPDATE `module_types` SET `status`=1 WHERE  `id`=112;

@@ -1,0 +1,61 @@
+INSERT INTO `module_types` (`id`, `sys_code`, `name`, `ordering`, `group_by`, `status`) VALUES (NULL, '9b5762f0bf43cae9d63edffa1d4fvgbj', 'Service', '140', 'Todo List', '1');
+
+INSERT INTO `modules` (`sys_code`, `module_type_id`, `name`, `ordering`, `status`) VALUES
+('11d7d8a741b244ba75e2dec8e08aecfr', (SELECT id FROM `module_types` WHERE name = 'Service' LIMIT 1), 'Service (Add)', 1, 1),
+('11d7d8a741b244ba75e2dec8e08aeqax', (SELECT id FROM `module_types` WHERE name = 'Service' LIMIT 1), 'Service (Edit)', 1, 1),
+('11d7d8a741b244ba75e2dec8e084r4ax', (SELECT id FROM `module_types` WHERE name = 'Service' LIMIT 1), 'Service (View)', 1, 1),
+('11d7d8a741b244ba75e2dec8e033eeee', (SELECT id FROM `module_types` WHERE name = 'Service' LIMIT 1), 'Service (Delete)', 1, 1);
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08amklo', (SELECT id FROM `modules` WHERE name = 'Service (Add)' LIMIT 1), 'services', 'add'),
+('1ad7d8a741b244bwe7e13cc8e08amjhy', (SELECT id FROM `modules` WHERE name = 'Service (Edit)' LIMIT 1), 'services', 'edit'),
+('1ad7d8a741b244bwe7e13cc8e08agbv0', (SELECT id FROM `modules` WHERE name = 'Service (View)' LIMIT 1), 'services', 'view'),
+('1ad7d8a741b244bwe7e13cc8e08agbv0', (SELECT id FROM `modules` WHERE name = 'Service (View)' LIMIT 1), 'services', 'index'),
+('1ad7d8a741b244bwe7e13cc8e08agbv0', (SELECT id FROM `modules` WHERE name = 'Service (View)' LIMIT 1), 'services', 'ajax'),
+('1ad7d8a741b244bwe7e13cc8e08amjhy', (SELECT id FROM `modules` WHERE name = 'Service (Delete)' LIMIT 1), 'services', 'delete'),
+('1ad7d8a741b244bwe7e13cc8e08aqswe', (SELECT id FROM `modules` WHERE name = 'Service (View)' LIMIT 1), 'services', 'addServiceGroup');
+
+INSERT INTO `module_types` (`id`, `sys_code`, `name`, `ordering`, `group_by`, `status`) VALUES (NULL, '9b5762f0bf43cae9d63edffa1d4fvgbj', 'Service Group', '140', 'Todo List', '1');
+
+INSERT INTO `modules` (`sys_code`, `module_type_id`, `name`, `ordering`, `status`) VALUES
+('11d7d8a741b244ba75e2dec8e08aecfr', (SELECT id FROM `module_types` WHERE name = 'Service Group' LIMIT 1), 'Service Group (Add)', 1, 1),
+('11d7d8a741b244ba75e2dec8e08aeqax', (SELECT id FROM `module_types` WHERE name = 'Service Group' LIMIT 1), 'Service Group (Edit)', 1, 1),
+('11d7d8a741b244ba75e2dec8e084r4ax', (SELECT id FROM `module_types` WHERE name = 'Service Group' LIMIT 1), 'Service Group (View)', 1, 1),
+('11d7d8a741b244ba75e2dec8e033eeee', (SELECT id FROM `module_types` WHERE name = 'Service Group' LIMIT 1), 'Service Group (Delete)', 1, 1);
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08amklo', (SELECT id FROM `modules` WHERE name = 'Service Group (Add)' LIMIT 1), 'service_groups', 'add'),
+('1ad7d8a741b244bwe7e13cc8e08amjhy', (SELECT id FROM `modules` WHERE name = 'Service Group (Edit)' LIMIT 1), 'service_groups', 'edit'),
+('1ad7d8a741b244bwe7e13cc8e08agbv0', (SELECT id FROM `modules` WHERE name = 'Service Group (View)' LIMIT 1), 'service_groups', 'view'),
+('1ad7d8a741b244bwe7e13cc8e08agbv0', (SELECT id FROM `modules` WHERE name = 'Service Group (View)' LIMIT 1), 'service_groups', 'index'),
+('1ad7d8a741b244bwe7e13cc8e08agbv0', (SELECT id FROM `modules` WHERE name = 'Service Group (View)' LIMIT 1), 'service_groups', 'ajax'),
+('1ad7d8a741b244bwe7e13cc8e08amjhy', (SELECT id FROM `modules` WHERE name = 'Service Group (Delete)' LIMIT 1), 'service_groups', 'delete');
+
+
+INSERT INTO `module_types` (`id`, `sys_code`, `name`, `ordering`, `group_by`, `status`) VALUES (NULL, '9b5762f0bf43cae9d63edffa1d4fvgbj', 'User Todolist', '141', 'Todo List', '1');
+
+INSERT INTO `modules` (`sys_code`, `module_type_id`, `name`, `ordering`, `status`) VALUES
+('11d7d8a741b244ba75e2dec8e08aecfr', (SELECT id FROM `module_types` WHERE name = 'User Todolist' LIMIT 1), 'User (Add)', 1, 1),
+('11d7d8a741b244ba75e2dec8e08aeqax', (SELECT id FROM `module_types` WHERE name = 'User Todolist' LIMIT 1), 'User (Edit)', 1, 1),
+('11d7d8a741b244ba75e2dec8e084r4ax', (SELECT id FROM `module_types` WHERE name = 'User Todolist' LIMIT 1), 'User (View)', 1, 1),
+('11d7d8a741b244ba75e2dec8e033eeee', (SELECT id FROM `module_types` WHERE name = 'User Todolist' LIMIT 1), 'User (Delete)', 1, 1);
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08amklo', (SELECT id FROM `modules` WHERE name = 'User (Add)' LIMIT 1), 'users', 'addUser'),
+('1ad7d8a741b244bwe7e13cc8e08amjhy', (SELECT id FROM `modules` WHERE name = 'User (Edit)' LIMIT 1), 'users', 'editUser'),
+('1ad7d8a741b244bwe7e13cc8e08agbv0', (SELECT id FROM `modules` WHERE name = 'User (View)' LIMIT 1), 'users', 'viewUser'),
+('1ad7d8a741b244bwe7e13cc8e08agbv0', (SELECT id FROM `modules` WHERE name = 'User (View)' LIMIT 1), 'users', 'indexUser'),
+('1ad7d8a741b244bwe7e13cc8e08agbv0', (SELECT id FROM `modules` WHERE name = 'User (View)' LIMIT 1), 'users', 'ajaxUser'),
+('1ad7d8a741b244bwe7e13cc8e08amjhy', (SELECT id FROM `modules` WHERE name = 'User (Delete)' LIMIT 1), 'users', 'deleteUser'),
+('1ad7d8a741b244bwe7e13cc8e08amjhy', (SELECT id FROM `modules` WHERE name = 'User (Edit)' LIMIT 1), 'users', 'editProfileUser')
+;
+
+INSERT INTO `modules` (`sys_code`, `module_type_id`, `name`, `ordering`, `status`) VALUES
+('11d7d8a741b244ba75e2dec8e08aecfr', (SELECT id FROM `module_types` WHERE name = 'User Todolist' LIMIT 1), 'User (Clear Session)', 1, 1);
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08amjhy', (SELECT id FROM `modules` WHERE name = 'User (Clear Session)' LIMIT 1), 'users', 'clearSessionUser')
+;
+
+
+

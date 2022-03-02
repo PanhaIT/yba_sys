@@ -1,0 +1,167 @@
+
+CREATE TABLE IF NOT EXISTS `membership_cards` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `type_of_membership_card_id` int(11) DEFAULT NULL,
+  `company_id` int(11) DEFAULT NULL,
+  `cgroup_id` int(11) DEFAULT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `account_id` int(11) DEFAULT NULL,
+  `card_id` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `card_date_start` date DEFAULT NULL,
+  `card_date_end` date DEFAULT NULL,
+  `total_date` int(11) DEFAULT NULL,
+  `amount_in_dollar` double DEFAULT NULL,
+  `discount_percent` double DEFAULT NULL,
+  `point_percent` double DEFAULT NULL,
+  `total_point` double DEFAULT NULL,
+  `exchange_point` double DEFAULT NULL,
+  `point_in_dollar` double DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `created_by` bigint(20) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `modified_by` bigint(20) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `customer_id` (`customer_id`),
+  KEY `company_id` (`company_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+
+CREATE TABLE IF NOT EXISTS `membership_card_results` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) DEFAULT NULL,
+  `sales_order_id` int(11) DEFAULT NULL,
+  `membership_card_id` int(11) DEFAULT NULL,
+  `type_of_membership_card_id` int(11) DEFAULT NULL,
+  `point` double DEFAULT NULL,
+  `amount_in_dollar` double DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '0 is void, 1 is active, 2 is inactive',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `promotional_points` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `branch_id` int(11) DEFAULT NULL,
+  `description` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `code` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `start` date DEFAULT NULL,
+  `end` date DEFAULT NULL,
+  `pgroup_id` int(11) DEFAULT NULL,
+  `note` text COLLATE utf8_unicode_ci,
+  `type` tinyint(4) DEFAULT NULL COMMENT '1: Product; 2: Product Group',
+  `approved` datetime DEFAULT NULL,
+  `approved_by` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  `is_apply_item` tinyint(4) DEFAULT '0' COMMENT '0:not appy product,1:appy product',
+  `apply` tinyint(4) DEFAULT '1',
+  `status` tinyint(4) DEFAULT '1' COMMENT '-1: Disapprove; 0: Void; 1: Request; 2: Approved',
+  PRIMARY KEY (`id`),
+  KEY `period` (`start`,`end`),
+  KEY `status` (`status`),
+  KEY `filters` (`date`,`pgroup_id`),
+  KEY `branch_id` (`branch_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `promotional_point_details` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `promotional_point_id` int(11) DEFAULT NULL,
+  `product_request_id` int(11) DEFAULT NULL,
+  `qty_request` decimal(15,3) DEFAULT NULL,
+  `uom_request` int(11) DEFAULT NULL,
+  `product_promo_point_id` int(11) DEFAULT NULL,
+  `qty_promo` decimal(15,3) DEFAULT NULL,
+  `uom_promo` int(11) DEFAULT NULL,
+  `discount_percent` decimal(7,3) DEFAULT NULL,
+  `discount_amount` decimal(15,3) DEFAULT NULL,
+  `unit_price` decimal(15,3) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `promotional_point_id` (`promotional_point_id`),
+  KEY `products` (`product_request_id`,`product_promo_point_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `type_of_membership_cards` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+INSERT INTO `type_of_membership_cards` (`id`, `name`, `created`, `created_by`, `modified`, `modified_by`, `is_active`) VALUES
+(1, 'Card Discount And Save', '2015-09-22 14:34:54', 1, NULL, NULL, 1),
+(2, 'Card Top Up And Discount', '2015-09-22 14:35:12', 1, NULL, NULL, 2);
+
+
+
+INSERT INTO `module_types` (`id`, `sys_code`, `name`, `ordering`, `group_by`, `status`) VALUES (NULL, '9b5762f0bf43cae9d63edffa1d47b334', 'Membership Card', '134', 'System Setting', '1');
+
+INSERT INTO `modules` (`sys_code`, `module_type_id`, `name`, `ordering`, `status`) VALUES
+('11d7d8a741b244ba75e2dec8e08aedrt', (SELECT id FROM `module_types` WHERE name = 'Membership Card' LIMIT 1), 'Membership Card (View)', 1, 1),
+('11d7d8a741b244ba75e2dec8e08aedrt', (SELECT id FROM `module_types` WHERE name = 'Membership Card' LIMIT 1), 'Membership Card (Add)', 1, 1),
+('11d7d8a741b244ba75e2dec8e08aedrt', (SELECT id FROM `module_types` WHERE name = 'Membership Card' LIMIT 1), 'Membership Card (Edit)', 1, 1),
+('11d7d8a741b244ba75e2dec8e08aedrt', (SELECT id FROM `module_types` WHERE name = 'Membership Card' LIMIT 1), 'Membership Card (Delete)', 1, 1),
+('11d7d8a741b244ba75e2dec8e08aedrt', (SELECT id FROM `module_types` WHERE name = 'Membership Card' LIMIT 1), 'Membership Card (Customer)', 1, 1);
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08ahjlp', (SELECT id FROM `modules` WHERE name = 'Membership Card (View)' LIMIT 1), 'membership_cards', 'index'),
+('1ad7d8a741b244bwe7e13cc8e08ahjlp', (SELECT id FROM `modules` WHERE name = 'Membership Card (View)' LIMIT 1), 'membership_cards', 'ajax'),
+('1ad7d8a741b244bwe7e13cc8e08ahjlp', (SELECT id FROM `modules` WHERE name = 'Membership Card (View)' LIMIT 1), 'membership_cards', 'view'),
+('1ad7d8a741b244bwe7e13cc8e08ahjlp', (SELECT id FROM `modules` WHERE name = 'Membership Card (Add)' LIMIT 1), 'membership_cards', 'add'),
+('1ad7d8a741b244bwe7e13cc8e08ahjlp', (SELECT id FROM `modules` WHERE name = 'Membership Card (Edit)' LIMIT 1), 'membership_cards', 'edit'),
+('1ad7d8a741b244bwe7e13cc8e08ahjlp', (SELECT id FROM `modules` WHERE name = 'Membership Card (Delete)' LIMIT 1), 'membership_cards', 'delete'),
+('1ad7d8a741b244bwe7e13cc8e08ahjlp', (SELECT id FROM `modules` WHERE name = 'Membership Card (Customer)' LIMIT 1), 'membership_cards', 'customer'),
+('1ad7d8a741b244bwe7e13cc8e08ahjlp', (SELECT id FROM `modules` WHERE name = 'Membership Card (Customer)' LIMIT 1), 'membership_cards', 'customerAjax'),
+('1ad7d8a741b244bwe7e13cc8e08ahjlp', (SELECT id FROM `modules` WHERE name = 'Membership Card (Customer)' LIMIT 1), 'membership_cards', 'seacrhCustomer');
+
+
+
+INSERT INTO `module_types` (`id`, `sys_code`, `name`, `ordering`, `group_by`, `status`) VALUES (NULL, '9b5762f0bf43cae9d63edffa1d47b123', 'Promotional Point', '134', 'System Setting', '1');
+
+INSERT INTO `modules` (`sys_code`, `module_type_id`, `name`, `ordering`, `status`) VALUES
+('11d7d8a741b244ba75e2dec8e08ae123', (SELECT id FROM `module_types` WHERE name = 'Promotional Point' LIMIT 1), 'Promotional Point (View)', 1, 1),
+('11d7d8a741b244ba75e2dec8e08ae234', (SELECT id FROM `module_types` WHERE name = 'Promotional Point' LIMIT 1), 'Promotional Point (Add)', 1, 1),
+('11d7d8a741b244ba75e2dec8e08ae345', (SELECT id FROM `module_types` WHERE name = 'Promotional Point' LIMIT 1), 'Promotional Point (Edit)', 1, 1),
+('11d7d8a741b244ba75e2dec8e08ae567', (SELECT id FROM `module_types` WHERE name = 'Promotional Point' LIMIT 1), 'Promotional Point (Delete)', 1, 1),
+('11d7d8a741b244ba75e2dec8e08ae678', (SELECT id FROM `module_types` WHERE name = 'Promotional Point' LIMIT 1), 'Promotional Point (Cancel)', 1, 1),
+('11d7d8a741b244ba75e2dec8e08ae678', (SELECT id FROM `module_types` WHERE name = 'Promotional Point' LIMIT 1), 'Promotional Point (Approve)', 1, 1),
+('11d7d8a741b244ba75e2dec8e08ae678', (SELECT id FROM `module_types` WHERE name = 'Promotional Point' LIMIT 1), 'Promotional Point (Pgroup)', 1, 1);
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES
+('1ad7d8a741b244bwe7e13cc8e08ah123', (SELECT id FROM `modules` WHERE name = 'Promotional Point (View)' LIMIT 1), 'promotional_points', 'index'),
+('1ad7d8a741b244bwe7e13cc8e08ah234', (SELECT id FROM `modules` WHERE name = 'Promotional Point (View)' LIMIT 1), 'promotional_points', 'ajax'),
+('1ad7d8a741b244bwe7e13cc8e08ah345', (SELECT id FROM `modules` WHERE name = 'Promotional Point (View)' LIMIT 1), 'promotional_points', 'view'),
+('1ad7d8a741b244bwe7e13cc8e08ah456', (SELECT id FROM `modules` WHERE name = 'Promotional Point (Add)' LIMIT 1), 'promotional_points', 'add'),
+('1ad7d8a741b244bwe7e13cc8e08ah567', (SELECT id FROM `modules` WHERE name = 'Promotional Point (Edit)' LIMIT 1), 'promotional_points', 'edit'),
+('1ad7d8a741b244bwe7e13cc8e08ah678', (SELECT id FROM `modules` WHERE name = 'Promotional Point (Delete)' LIMIT 1), 'promotional_points', 'delete'),
+('1ad7d8a741b244bwe7e13cc8e08ah098', (SELECT id FROM `modules` WHERE name = 'Promotional Point (View)' LIMIT 1), 'promotional_points', 'searchProduct'),
+('1ad7d8a741b244bwe7e13cc8e08ah098', (SELECT id FROM `modules` WHERE name = 'Promotional Point (Cancel)' LIMIT 1), 'promotional_points', 'cancel'),
+('1ad7d8a741b244bwe7e13cc8e08ah678', (SELECT id FROM `modules` WHERE name = 'Promotional Point (Pgroup)' LIMIT 1), 'promotional_points', 'pgroup'),
+('1ad7d8a741b244bwe7e13cc8e08ah890', (SELECT id FROM `modules` WHERE name = 'Promotional Point (Pgroup)' LIMIT 1), 'promotional_points', 'pgroupAjax'),
+('1ad7d8a741b244bwe7e13cc8e08ah098', (SELECT id FROM `modules` WHERE name = 'Promotional Point (Pgroup)' LIMIT 1), 'promotional_points', 'searchPgroup'),
+('1ad7d8a741b244bwe7e13cc8e08ah098', (SELECT id FROM `modules` WHERE name = 'Promotional Point (Approve)' LIMIT 1), 'promotional_points', 'approve');
+
+ALTER TABLE `promotional_points` ADD `is_apply_item` TINYINT(4) NULL DEFAULT '0' COMMENT '0:not appy product,1:appy product' AFTER `modified_by`;
+
+ALTER TABLE `sales_orders` ADD `card_code` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL COMMENT 'membershipcar discount' AFTER `so_code`;
+
+INSERT INTO `s_module_settings` (`id`, `s_module_type_setting_id`, `name`, `ordering`, `created`, `is_active`) VALUES (NULL, '6', 'Membership Card', '5', '2018-07-18 14:44:14', '1');
+
+INSERT INTO `s_module_detail_settings` (`id`, `s_module_setting_id`, `name`, `date_value`, `value`, `module_description`, `module_controller`, `module_view`, `template`, `ordering`, `is_has_module`, `is_use_date`, `is_use_chart_account`, `is_use_integer`, `is_use_currency`, `is_use_checked`, `is_import`, `is_checked`, `is_active`) VALUES (NULL, '29', 'Membership Card', NULL, NULL, 'Membership Card', 'membership_cards', 'index', NULL, '1', '1', '0', '0', '0', '0', '0', '0', '1', '1');
+
+ALTER TABLE `customers` ADD `dob` DATE NULL AFTER `sex`;
+
+ALTER TABLE `membership_cards` ADD `total_point` DOUBLE NULL DEFAULT NULL AFTER `point_percent`;
+ALTER TABLE `membership_cards` ADD `exchange_point` DOUBLE NULL DEFAULT NULL AFTER `total_point`;
+
+

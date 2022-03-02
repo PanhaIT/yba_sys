@@ -1,0 +1,297 @@
+ALTER TABLE `catalog_order_details` ADD `vendor_id` INT(11) NULL AFTER `catalog_order_id`;
+ALTER TABLE `catalog_order_details` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `catalog_order_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+ALTER TABLE `catalog_order_details` DROP `is_syn`;
+
+ALTER TABLE `consignment_details` ADD `vendor_id` INT(11) NULL AFTER `consignment_id`;
+ALTER TABLE `consignment_details` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `consignment_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `consignment_return_details` ADD `vendor_id` INT(11) NULL AFTER `consignment_return_id`;
+ALTER TABLE `consignment_return_details` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `consignment_return_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+RENAME TABLE `credit_memos` TO `sales_returns`;
+RENAME TABLE `credit_memo_details` TO `sales_return_details`;
+RENAME TABLE `credit_memo_services` TO `sales_return_services`;
+RENAME TABLE `credit_memo_with_sales` TO `sales_return_with_sales`;
+RENAME TABLE `credit_memo_miscs` TO `sales_return_miscs`;
+RENAME TABLE `credit_memo_receipts` TO `sales_return_receipts`;
+
+RENAME TABLE `sales_orders` TO `sales_invsoices`;
+RENAME TABLE `sales_order_details` TO `sales_invoice_details`;
+RENAME TABLE `sales_order_miscs` TO `sales_invoice_miscs`;
+RENAME TABLE `sales_order_receipts` TO `sales_invoice_receipts`;
+RENAME TABLE `sales_order_services` TO `sales_invoice_services`;
+
+RENAME TABLE `orders` TO `sales_orders`;
+RENAME TABLE `order_details` TO `sales_order_details`;
+RENAME TABLE `order_miscs` TO `sales_order_miscs`;
+RENAME TABLE `order_services` TO `sales_order_services`;
+RENAME TABLE `sales_order_term_conditions` TO `sales_invoice_term_conditions`;
+RENAME TABLE `order_term_conditions` TO `sales_order_term_conditions`;
+
+ALTER TABLE `consignment_receives` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `consignment_receives` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `consignment_return_receives` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `consignment_return_receives` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+
+ALTER TABLE `deliveries` CHANGE `sales_order_id` `sales_inovice_id` INT(10) NULL DEFAULT NULL;
+ALTER TABLE `deliveries` CHANGE `order_id` `sales_order_id` INT(11) NULL DEFAULT NULL;
+
+CREATE TABLE IF NOT EXISTS `delivery_picks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `delivery_id` int(11) DEFAULT NULL,
+  `delivery_detail_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `color_id` int(11) DEFAULT NULL,
+  `size_id` int(11) DEFAULT NULL,
+  `location_id` int(11) DEFAULT NULL,
+  `qty` int(11) DEFAULT NULL,
+  `lots_number` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `expired_date` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `module` (`delivery_id`,`delivery_detail_id`),
+  KEY `location_id` (`location_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+ALTER TABLE `delivery_details` CHANGE `sales_order_id` `sales_inovice_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `delivery_details` CHANGE `sales_order_detail_id` `sales_invoice_detail_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `delivery_details` ADD COLUMN `sales_order_id` INT(11) NULL DEFAULT NULL AFTER `delivery_id`, ADD COLUMN `sales_order_detail_id` INT(11) NULL DEFAULT NULL AFTER `sales_order_id`;
+
+ALTER TABLE `delivery_details` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `delivery_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `general_ledgers` CHANGE `sales_order_id` `sales_invoice_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `general_ledgers` CHANGE `sales_order_receipt_id` `sales_invoice_receipt_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `general_ledgers` CHANGE `credit_memo_id` `sales_return_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `general_ledgers` CHANGE `credit_memo_receipt_id` `sales_return_receipt_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `general_ledgers` CHANGE `cycle_product_id` `inv_adj_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `general_ledgers` CHANGE `credit_memo_with_sale_id` `sales_return_with_sale_id` INT(11) NULL DEFAULT NULL;
+
+ALTER TABLE `general_ledger_details` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `general_ledger_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `e_product_favorites` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `e_product_favorites` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `landing_cost_details` ADD `vendor_id` INT(11) NULL AFTER `purchase_order_detail_id`;
+ALTER TABLE `landing_cost_details` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `landing_cost_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `pos_pick_details` ADD `vendor_id` INT(11) NULL AFTER `sales_order_detail_id`;
+ALTER TABLE `pos_pick_details` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `pos_pick_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `product_branches` ADD `vendor_id` INT(11) NULL AFTER `id`;
+ALTER TABLE `product_branches` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `product_branches` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `product_inventories` CHANGE `product_id` `vendor_id` INT(11) NOT NULL DEFAULT '0';
+ALTER TABLE `product_inventories` ADD `product_id` INT(11) NULL AFTER `vendor_id`;
+ALTER TABLE `product_inventories` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `product_inventories` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `product_with_skus` ADD `vendor_id` INT(11) NULL AFTER `id`;
+ALTER TABLE `product_with_skus` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `product_with_skus` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `product_price_histories` ADD `vendor_id` INT(11) NULL AFTER `id`;
+ALTER TABLE `product_price_histories` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `product_price_histories` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `product_unit_cost_histories` ADD `vendor_id` INT(11) NULL AFTER `purchase_order_id`;
+ALTER TABLE `product_unit_cost_histories` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `product_unit_cost_histories` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `purchase_order_details` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `purchase_order_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `purchase_receives` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `purchase_receives` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `purchase_request_details` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `purchase_request_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `purchase_return_details` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `purchase_return_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `purchase_return_receives` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `purchase_return_receives` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `quotation_details` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `quotation_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `receive_payment_details` CHANGE `sales_order_id` `sales_invoice_id` BIGINT(20) NULL DEFAULT NULL;
+
+ALTER TABLE `request_stock_details` ADD `vendor_id` INT(11) NULL AFTER `request_stock_id`;
+ALTER TABLE `request_stock_details` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `request_stock_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `sales_invoice_details` CHANGE `sales_order_id` `sales_invoice_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `sales_invoice_details` ADD `vendor_id` INT(11) NULL AFTER `sales_invoice_id`;
+ALTER TABLE `sales_invoice_details` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `sales_invoice_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `sales_invoice_miscs` CHANGE `sales_order_id` `sales_invoice_id` BIGINT(20) NULL DEFAULT NULL;
+ALTER TABLE `sales_invoice_receipts` CHANGE `sales_order_id` `sales_invoice_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `sales_invoice_services` CHANGE `sales_order_id` `sales_invoice_id` INT(10) NULL DEFAULT NULL;
+
+ALTER TABLE `sales_order_details` CHANGE `order_id` `sales_order_id` BIGINT(20) NULL DEFAULT NULL;
+ALTER TABLE `sales_order_details` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `sales_order_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `sales_order_miscs` CHANGE `order_id` `sales_order_id` BIGINT(20) NULL DEFAULT NULL;
+ALTER TABLE `sales_order_services` CHANGE `order_id` `sales_order_id` BIGINT(20) NULL DEFAULT NULL;
+ALTER TABLE `sales_order_term_conditions` CHANGE `order_id` `sales_order_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `sales_order_term_conditions` CHANGE `sales_order_id` `sales_invoice_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `sales_returns` CHANGE `sales_order_id` `sales_invoice_id` INT(11) NULL DEFAULT NULL;
+
+ALTER TABLE `sales_return_details` CHANGE `credit_memo_id` `sales_return_id` INT(11) UNSIGNED NULL DEFAULT NULL;
+ALTER TABLE `sales_return_details` ADD `vendor_id` INT(11) NULL AFTER `sales_return_id`;
+ALTER TABLE `sales_return_details` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `sales_return_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+ALTER TABLE `sales_return_miscs` CHANGE `credit_memo_id` `sales_return_id` INT(11) UNSIGNED NULL DEFAULT NULL;
+ALTER TABLE `sales_return_receipts` CHANGE `credit_memo_id` `sales_return_id` INT(11) UNSIGNED NULL DEFAULT NULL;
+ALTER TABLE `sales_return_services` CHANGE `credit_memo_id` `sales_return_id` INT(11) UNSIGNED NULL DEFAULT NULL;
+ALTER TABLE `sales_return_with_sales` CHANGE `credit_memo_id` `sales_return_id` INT(11) UNSIGNED NULL DEFAULT NULL;
+ALTER TABLE `sales_return_with_sales` CHANGE `sales_order_id` `sales_invoice_id` INT(11) UNSIGNED NULL DEFAULT NULL;
+
+ALTER TABLE `transfer_order_details` ADD `vendor_id` INT(11) NULL AFTER `expired_date`;
+ALTER TABLE `transfer_order_details` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `transfer_order_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `transfer_receives` ADD `vendor_id` INT(11) NULL AFTER `expired_date`;
+ALTER TABLE `transfer_receives` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `transfer_receives` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `vendor_consignment_details` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `vendor_consignment_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `vendor_consignment_return_details` ADD `color_id` INT(11) NULL AFTER `product_id`;
+ALTER TABLE `vendor_consignment_return_details` ADD `size_id` INT(11) NULL AFTER `color_id`;
+
+ALTER TABLE `catalog_orders` CHANGE `is_convert` `is_convert` TINYINT(4) NULL DEFAULT NULL COMMENT '0: Not Yet; 1: Quotation; 2; Sales Order; 3: Sales Invoice';
+
+ALTER TABLE `crontab_inv_adjs` CHANGE `cycle_product_id` `inv_adj_id` BIGINT(20) NULL DEFAULT NULL;
+ALTER TABLE `general_ledgers` CHANGE `invoice_pbc_with_pbs_id` `invoice_pbr_with_pbs_id` INT(11) NULL DEFAULT NULL;
+
+RENAME TABLE `purchase_orders` TO `purchase_bills`;
+ALTER TABLE `purchase_bills` CHANGE `purchase_request_id` `purchase_order_id` INT(11) NULL DEFAULT NULL;
+
+RENAME TABLE `purchase_order_details` TO `purchase_bill_details`;
+ALTER TABLE `purchase_bill_details` CHANGE `purchase_order_id` `purchase_bill_id` INT(10) UNSIGNED NULL DEFAULT NULL;
+ALTER TABLE `purchase_order_miscs` CHANGE `purchase_order_id` `purchase_bill_id` INT(10) UNSIGNED NULL DEFAULT NULL;
+ALTER TABLE `purchase_order_services` CHANGE `purchase_order_id` `purchase_bill_id` INT(10) UNSIGNED NULL DEFAULT NULL;
+RENAME TABLE `purchase_order_services` TO `purchase_bill_services`;
+
+ALTER TABLE `purchase_receives` CHANGE `purchase_order_id` `purchase_bill_id` INT(10) UNSIGNED NULL DEFAULT NULL;
+ALTER TABLE `purchase_receives` CHANGE `purchase_order_detail_id` `purchase_bill_detail_id` VARCHAR(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL;
+ALTER TABLE `purchase_receive_results` CHANGE `purchase_order_id` `purchase_bill_id` INT(11) UNSIGNED NULL DEFAULT NULL;
+ALTER TABLE `purchase_receive_results` ADD `purchase_order_id` INT(11) NULL AFTER `purchase_bill_id`;
+
+RENAME TABLE `purchase_requests` TO `purchase_orders`;
+ALTER TABLE `purchase_request_details` CHANGE `purchase_request_id` `purchase_order_id` BIGINT(20) NULL DEFAULT NULL;
+RENAME TABLE `purchase_request_details` TO `purchase_order_details`;
+ALTER TABLE `purchase_request_services` CHANGE `purchase_request_id` `purchase_order_id` BIGINT(20) NULL DEFAULT NULL;
+ALTER TABLE `purchase_request_term_conditions` CHANGE `purchase_request_id` `purchase_order_id` INT(11) NULL DEFAULT NULL;
+RENAME TABLE `purchase_request_services` TO `purchase_order_services`;
+RENAME TABLE `purchase_request_term_conditions` TO `purchase_order_term_conditions`;
+
+ALTER TABLE `purchase_order_term_conditions` CHANGE `purchase_order_id` `purchase_bill_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `pvs` CHANGE `purchase_order_id` `purchase_bill_id` INT(10) UNSIGNED NULL DEFAULT NULL;
+
+ALTER TABLE `invoice_pbc_with_pbs` CHANGE `purchase_order_id` `purchase_bill_id` INT(10) NULL DEFAULT NULL;
+ALTER TABLE `general_ledgers` CHANGE `purchase_order_id` `purchase_bill_id` INT(11) NULL DEFAULT NULL;
+
+ALTER TABLE `pos_pick_details` CHANGE `sales_order_id` `sales_invoice_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `pos_pick_details` CHANGE `sales_order_detail_id` `sales_invoice_detail_id` INT(11) NULL DEFAULT NULL;
+RENAME TABLE `invoice_pbc_with_pbs` TO `invoice_pbr_with_pbs`;
+
+
+ALTER TABLE `ap_agings`
+	CHANGE COLUMN `deposit_to` `chart_account_id` INT(11) NULL DEFAULT NULL AFTER `vendor_id`;
+ALTER TABLE `ar_agings`
+	CHANGE COLUMN `deposit_to` `chart_account_id` INT(11) NULL DEFAULT NULL AFTER `employee_id`;
+
+
+DROP TABLE users;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `sys_code` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `filename` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pin` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `main_project_id` bigint(20) DEFAULT NULL,
+  `project_id` bigint(20) DEFAULT NULL,
+  `user_code` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `session_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `session_start` datetime DEFAULT NULL,
+  `session_active` datetime DEFAULT NULL,
+  `session_lat` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `session_long` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `session_accuracy` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `login_attempt` datetime DEFAULT NULL,
+  `login_attempt_remote_ip` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `login_attempt_http_user_agent` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `login_lat` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `login_long` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `login_accuracy` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `expired` date DEFAULT NULL,
+  `duration` bigint(20) DEFAULT '0',
+  `username` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `first_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `last_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sex` varchar(7) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `address` text COLLATE utf8_unicode_ci,
+  `telephone` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nationality` int(11) DEFAULT NULL,
+  `phone_verify_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phone_verify_token_expired_date` datetime DEFAULT NULL,
+  `phone_verify_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phone_verify_code_expired_date` datetime DEFAULT NULL,
+  `phone_reset_password_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phone_reset_password_token_expired_date` datetime DEFAULT NULL,
+  `phone_reset_password_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phone_reset_password_code_expired_date` datetime DEFAULT NULL,
+  `phone_new_password_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phone_new_password_token_expired_date` datetime DEFAULT NULL,
+  `provider` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `provider_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `provider_image_url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `provider_data` text COLLATE utf8_unicode_ci,
+  `created` datetime DEFAULT NULL,
+  `created_by` bigint(20) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `modified_by` bigint(20) DEFAULT NULL,
+  `user_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 from Cataloge Register; 1 By Ecommerce App',
+  `is_convert_customer` tinyint(4) DEFAULT '0' COMMENT '0 not convert; 1 converted to customer',
+  `is_active` tinyint(4) DEFAULT '1' COMMENT '0 inactive for Catalog; 3 Active for Catalog;  1 Active for Web App; 2 inactive for Web App',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  KEY `first_name` (`first_name`),
+  KEY `last_name` (`last_name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=16 ;
+
+
+INSERT INTO `users` (`id`, `sys_code`, `filename`, `pin`, `main_project_id`, `project_id`, `user_code`, `session_id`, `session_start`, `session_active`, `session_lat`, `session_long`, `session_accuracy`, `login_attempt`, `login_attempt_remote_ip`, `login_attempt_http_user_agent`, `login_lat`, `login_long`, `login_accuracy`, `expired`, `duration`, `username`, `password`, `first_name`, `last_name`, `sex`, `dob`, `address`, `telephone`, `email`, `nationality`, `phone_verify_token`, `phone_verify_token_expired_date`, `phone_verify_code`, `phone_verify_code_expired_date`, `phone_reset_password_token`, `phone_reset_password_token_expired_date`, `phone_reset_password_code`, `phone_reset_password_code_expired_date`, `phone_new_password_token`, `phone_new_password_token_expired_date`, `provider`, `provider_id`, `provider_image_url`, `provider_data`, `created`, `created_by`, `modified`, `modified_by`, `user_type`, `is_convert_customer`, `is_active`) VALUES
+(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-12-31', 0, 'admin', '273ad0d33586ddbdb7536761cc3daad0', 'ab', 'cd', 'F', NULL, NULL, '016759922', NULL, NULL, '90ef4620-61f2-4e90-aa2f-e9e34f99f3b4', '2020-09-24 09:51:12', '9296', '2020-09-23 09:52:12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-09-23 09:51:12', NULL, '2021-04-07 16:04:15', 1, 0, 0, 1),
+(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-12-31', 964123163, 'admin1', '273ad0d33586ddbdb7536761cc3daad0', 'a', 'b', NULL, NULL, NULL, '0964123163', NULL, NULL, '950b8129-1301-4a87-af0a-4e97f56db983', '2020-09-24 17:25:15', '0242', '2020-09-23 17:26:15', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-09-23 13:44:25', NULL, '2020-10-05 13:22:51', NULL, 0, 0, 1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+

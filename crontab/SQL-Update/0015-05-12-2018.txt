@@ -1,0 +1,21 @@
+ALTER TABLE `purchase_request_details`
+	ADD COLUMN `qty_free` INT(11) NULL DEFAULT '0' AFTER `qty`,
+	ADD COLUMN `discount_amount` DECIMAL(15,9) NULL DEFAULT '0.000000000' AFTER `unit_cost`,
+	ADD COLUMN `discount_percent` DECIMAL(7,2) NULL DEFAULT '0.000000000' AFTER `discount_amount`;
+
+ALTER TABLE `purchase_request_services`
+	ADD COLUMN `qty_free` INT(11) NULL DEFAULT '0' AFTER `qty`,
+	ADD COLUMN `discount_amount` DECIMAL(15,9) NULL DEFAULT '0.000000000' AFTER `unit_cost`,
+	ADD COLUMN `discouht_percent` DECIMAL(7,2) NULL DEFAULT '0.000000000' AFTER `discount_amount`;
+
+ALTER TABLE `purchase_request_details`
+	ADD COLUMN `discount_id` INT NULL DEFAULT NULL AFTER `unit_cost`;
+
+ALTER TABLE `purchase_request_services`
+	ADD COLUMN `discount_id` INT NULL DEFAULT NULL AFTER `unit_cost`;
+
+
+INSERT INTO `modules` (`sys_code`, `module_type_id`, `name`, `ordering`, `description`) VALUES ('a90f00d3021607467b5c2480f127324', 48, 'Purchase Order (Edit Discount)', 11, NULL);
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('9e267ffdd976159ad380b3f5403d3121', 426, 'purchase_requests', 'discount');
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('9e267ffdd976159ad380b3f5403d3122', 426, 'purchase_requests', 'invoiceDiscount');

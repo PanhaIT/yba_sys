@@ -1,0 +1,29 @@
+INSERT INTO `s_module_detail_settings` (`s_module_setting_id`, `name`, `module_description`, `module_controller`, `module_view`, `ordering`, `is_has_module`, `is_use_checked`) VALUES (1, '', 'Department List', 'departments', 'index', 9, 1, 0);
+
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('ba1edb23e8d6e190df667a4f622175e0', 597, 'departments', 'index');
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('ba1edb23e8d6e190df667a4f622175e0', 597, 'departments', 'ajax');
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('ba1edb23e8d6e190df667a4f622175e0', 597, 'departments', 'view');
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('ba1edb23e8d6e190df667a4f622175e0', 597, 'departments', 'add');
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('ba1edb23e8d6e190df667a4f622175e0', 597, 'departments', 'edit');
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('ba1edb23e8d6e190df667a4f622175e0', 597, 'departments', 'delete');
+
+ALTER TABLE `pgroups`
+	ADD COLUMN `department_id` INT NULL DEFAULT NULL AFTER `sys_code`,
+	DROP INDEX `parent_id`,
+	ADD INDEX `filters` (`department_id`, `parent_id`);
+
+CREATE TABLE `departments` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`sys_code` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`name` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`created` DATETIME NULL DEFAULT NULL,
+	`created_by` INT(11) NULL DEFAULT NULL,
+	`modified` DATETIME NULL DEFAULT NULL,
+	`modified_by` INT(11) NULL DEFAULT NULL,
+	`is_active` TINYINT(4) NULL DEFAULT '1',
+	PRIMARY KEY (`id`),
+	INDEX `name` (`name`)
+)
+COLLATE='utf8_unicode_ci'
+ENGINE=InnoDB;

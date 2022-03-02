@@ -1,0 +1,7 @@
+UPDATE `inventories` SET `qty` = '0.000' WHERE `inventories`.`id` = 442878;
+
+UPDATE `7_inventory_totals` SET `total_qty` = '20.000' WHERE `7_inventory_totals`.`product_id` = 2346 AND `7_inventory_totals`.`location_id` = 7 AND `7_inventory_totals`.`lots_number` = '0' AND `7_inventory_totals`.`expired_date` = '0000-00-00';
+
+UPDATE `7_inventory_total_details` SET `total_pb` = '48.000' WHERE `7_inventory_total_details`.`product_id` = 2346 AND `7_inventory_total_details`.`location_id` = 7 AND `7_inventory_total_details`.`lots_number` = '0' AND `7_inventory_total_details`.`expired_date` = '0000-00-00' AND `7_inventory_total_details`.`date` = '2021-02-03';
+
+UPDATE `7_group_totals` SET `total_qty` = '20.000' WHERE `7_group_totals`.`product_id` = 2346 AND `7_group_totals`.`lots_number` = '0' AND `7_group_totals`.`expired_date` = '0000-00-00' AND `7_group_totals`.`location_id` = 7 AND `7_group_totals`.`location_group_id` = 7;

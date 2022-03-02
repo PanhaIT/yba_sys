@@ -1,0 +1,15 @@
+DROP TRIGGER `zProductBfInsert`;
+
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='';
+DELIMITER //
+CREATE TRIGGER `zProductBfInsert` BEFORE INSERT ON `products` FOR EACH ROW BEGIN
+	IF NEW.barcode = "" OR NEW.barcode IS NULL OR NEW.name = "" OR NEW.name IS NULL THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid Data';
+	END IF;
+	IF NEW.barcode = "P" THEN
+		SET NEW.barcode = (SELECT CONCAT(NEW.barcode, (SELECT LPAD(((SELECT count(tmp.id) FROM `products` as tmp WHERE tmp.barcode LIKE CONCAT(NEW.barcode, '%')) + 1),6,'0'))));
+	END IF;
+	#SET NEW.code = NEW.barcode;
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;

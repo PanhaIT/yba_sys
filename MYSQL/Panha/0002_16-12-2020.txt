@@ -1,0 +1,1 @@
+UPDATE `s_module_detail_settings` SET `is_active` = '1' WHERE `s_module_detail_settings`.`id` =20;

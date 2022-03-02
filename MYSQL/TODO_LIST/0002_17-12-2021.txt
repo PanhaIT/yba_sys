@@ -1,0 +1,2 @@
+ALTER TABLE `employees` DROP `is_show_in_sales`;
+ALTER TABLE `employees` ADD `employee_type_id` INT(11) NULL AFTER `village_id`;

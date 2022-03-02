@@ -1,0 +1,69 @@
+INSERT INTO `module_types` (`sys_code`, `name`, `ordering`, `group_by`) VALUES ('f3295fe9125127b25b5ecbbf7f3c8220', 'Discount Promotion', 119, 'Sales');
+
+INSERT INTO `modules` (`sys_code`, `module_type_id`, `name`, `ordering`, `description`) VALUES ('2b73c111ca6b1ee7f42be279c1c2f864', (SELECT id FROM module_types WHERE name = 'Discount Promotion' LIMIT 1), 'Discount Promotion (View)', 1, NULL);
+INSERT INTO `modules` (`sys_code`, `module_type_id`, `name`, `ordering`, `description`) VALUES ('2b73c111ca6b1ee7f42be279c1c2f864', (SELECT id FROM module_types WHERE name = 'Discount Promotion' LIMIT 1), 'Discount Promotion (Add)', 2, NULL);
+INSERT INTO `modules` (`sys_code`, `module_type_id`, `name`, `ordering`, `description`) VALUES ('2b73c111ca6b1ee7f42be279c1c2f864', (SELECT id FROM module_types WHERE name = 'Discount Promotion' LIMIT 1), 'Discount Promotion (Edit)', 3, NULL);
+INSERT INTO `modules` (`sys_code`, `module_type_id`, `name`, `ordering`, `description`) VALUES ('2b73c111ca6b1ee7f42be279c1c2f864', (SELECT id FROM module_types WHERE name = 'Discount Promotion' LIMIT 1), 'Discount Promotion (Delete)', 4, NULL);
+INSERT INTO `modules` (`sys_code`, `module_type_id`, `name`, `ordering`, `description`) VALUES ('2b73c111ca6b1ee7f42be279c1c2f864', (SELECT id FROM module_types WHERE name = 'Discount Promotion' LIMIT 1), 'Discount Promotion (Approve)', 5, NULL);
+INSERT INTO `modules` (`sys_code`, `module_type_id`, `name`, `ordering`, `description`) VALUES ('2b73c111ca6b1ee7f42be279c1c2f864', (SELECT id FROM module_types WHERE name = 'Discount Promotion' LIMIT 1), 'Discount Promotion (Cancel)', 6, NULL);
+
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('32288347f24b8a7363717010d138faca', (SELECT id FROM modules WHERE name = 'Discount Promotion (View)' LIMIT 1), 'promotionals', 'index');
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('32288347f24b8a7363717010d138faca', (SELECT id FROM modules WHERE name = 'Discount Promotion (View)' LIMIT 1), 'promotionals', 'ajax');
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('32288347f24b8a7363717010d138faca', (SELECT id FROM modules WHERE name = 'Discount Promotion (View)' LIMIT 1), 'promotionals', 'view');
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('32288347f24b8a7363717010d138faca', (SELECT id FROM modules WHERE name = 'Discount Promotion (View)' LIMIT 1), 'promotionals', 'searchProduct');
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('32288347f24b8a7363717010d138faca', (SELECT id FROM modules WHERE name = 'Discount Promotion (Add)' LIMIT 1), 'promotionals', 'add');
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('32288347f24b8a7363717010d138faca', (SELECT id FROM modules WHERE name = 'Discount Promotion (Edit)' LIMIT 1), 'promotionals', 'edit');
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('32288347f24b8a7363717010d138faca', (SELECT id FROM modules WHERE name = 'Discount Promotion (Delete)' LIMIT 1), 'promotionals', 'delete');
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('32288347f24b8a7363717010d138faca', (SELECT id FROM modules WHERE name = 'Discount Promotion (Approve)' LIMIT 1), 'promotionals', 'approve');
+INSERT INTO `module_details` (`sys_code`, `module_id`, `controllers`, `views`) VALUES ('32288347f24b8a7363717010d138faca', (SELECT id FROM modules WHERE name = 'Discount Promotion (Cancel)' LIMIT 1), 'promotionals', 'cancel');
+
+
+ALTER TABLE `sales_order_details`
+	ADD COLUMN `promotional_id` INT(11) NULL DEFAULT NULL AFTER `sales_order_id`;
+
+
+CREATE TABLE `promotionals` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`description` VARCHAR(500) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`date` DATE NULL DEFAULT NULL,
+	`code` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`start` DATE NULL DEFAULT NULL,
+	`end` DATE NULL DEFAULT NULL,
+	`cgroup_id` INT(11) NULL DEFAULT NULL,
+	`customer_id` INT(11) NULL DEFAULT NULL,
+	`note` TEXT NULL COLLATE 'utf8_unicode_ci',
+	`type` TINYINT(4) NULL DEFAULT NULL COMMENT '1: Item; 2: Invoice',
+	`approved` DATETIME NULL DEFAULT NULL,
+	`approved_by` INT(11) NULL DEFAULT NULL,
+	`created` DATETIME NULL DEFAULT NULL,
+	`created_by` INT(11) NULL DEFAULT NULL,
+	`modified` DATETIME NULL DEFAULT NULL,
+	`modified_by` INT(11) NULL DEFAULT NULL,
+	`status` TINYINT(4) NULL DEFAULT '1' COMMENT '-1: Disapprove; 0: Void; 1: Request; 2: Approved',
+	PRIMARY KEY (`id`),
+	INDEX `period` (`start`, `end`),
+	INDEX `status` (`status`),
+	INDEX `filters` (`date`, `cgroup_id`, `customer_id`)
+)
+COLLATE='utf8_unicode_ci'
+ENGINE=InnoDB;
+
+CREATE TABLE `promotional_details` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`promotional_id` INT(11) NULL DEFAULT NULL,
+	`product_request_id` INT(11) NULL DEFAULT NULL,
+	`qty_request` DECIMAL(15,3) NULL DEFAULT NULL,
+	`uom_request` INT(11) NULL DEFAULT NULL,
+	`product_promo_id` INT(11) NULL DEFAULT NULL,
+	`qty_promo` DECIMAL(15,3) NULL DEFAULT NULL,
+	`uom_promo` INT(11) NULL DEFAULT NULL,
+	`discount_percent` DECIMAL(7,3) NULL DEFAULT NULL,
+	`discount_amount` DECIMAL(15,3) NULL DEFAULT NULL,
+	`unit_price` DECIMAL(15,3) NULL DEFAULT NULL,
+	PRIMARY KEY (`id`),
+	INDEX `promotional_id` (`promotional_id`),
+	INDEX `products` (`product_request_id`, `product_promo_id`)
+)
+COLLATE='utf8_unicode_ci'
+ENGINE=InnoDB;
+

@@ -1,0 +1,2 @@
+ALTER TABLE `quotation_details` ADD `qty_free` INT(11) NULL DEFAULT '0' AFTER `qty`;
+ALTER TABLE `services` ADD `branch_id` INT(11) NULL AFTER `company_id`;

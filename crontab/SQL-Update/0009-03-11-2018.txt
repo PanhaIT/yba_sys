@@ -1,0 +1,3 @@
+UPDATE `module_details` SET `views`='printBarcodeTmp1' WHERE  `id`=1491;
+UPDATE `module_details` SET `views`='printBarcodeTmp2' WHERE  `id`=1492;
+UPDATE `module_details` SET `views`='printBarcodeTmp3' WHERE  `id`=1489;

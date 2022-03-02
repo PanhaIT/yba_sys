@@ -1,0 +1,11 @@
+UPDATE `module_details` SET `controllers` = 'purchase_bills' WHERE `controllers` = 'purchase_orders';
+
+INSERT INTO `location_group_types` (`id`, `sys_code`, `name`, `description`, `allow_negative_stock`, `stock_tranfer_confirm`, `created`, `created_by`, `modified`, `modified_by`, `is_active`) VALUES
+(1, '1fdc275e4fd22798c821a3098d56c88c', 'Consignment', NULL, 0, 0, '2017-08-23 15:01:19', NULL, '2017-08-23 15:01:21', NULL, 1),
+(2, 'f63ecf61a3c39fc41d5ac793784db387', 'Warehouse Group', '', 1, 0, '2017-08-26 09:19:37', 1, '2017-11-30 15:02:12', 1, 1);
+
+
+INSERT INTO `branch_types` (`id`, `sys_code`, `name`, `created`, `created_by`, `modified`, `modified_by`, `is_active`) VALUES
+(1, '108de0138a3c639a32e153a442560811', 'Branch', '2016-11-04 13:49:31', 1, '2016-11-04 13:49:31', NULL, 1);
+
+ALTER TABLE `inventory_total_by_dates` CHANGE `total_so` `total_si` DECIMAL(15,3) NULL DEFAULT '0.000';
